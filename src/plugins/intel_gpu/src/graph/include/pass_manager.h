@@ -10,6 +10,8 @@
 #include "eltwise_inst.h"
 #include "convolution_inst.h"
 #include "permute_inst.h"
+#include "pooling_inst.h"
+#include "resample_inst.h"
 #include <string>
 #include <vector>
 #include <memory>
@@ -201,8 +203,13 @@ public:
     explicit prepare_padding(bool output_size_handling_enabled_switch)
         : base_pass("prepare_padding"), output_size_handling_enabled(output_size_handling_enabled_switch) {}
     static cldnn::padding get_needed_padding_for_convolution(convolution_node& node);
+    static cldnn::padding get_needed_padding_for_deconvolution(deconvolution_node& node);
+    static cldnn::padding get_needed_padding_for_pooling(pooling_node& node);
+    static cldnn::padding get_needed_padding_for_resample(resample_node& node);
 private:
     void run(program& p) override;
+    void prepare_padding_new(program& p);
+    void prepare_padding_old(program& p);
     bool output_size_handling_enabled;
 };
 

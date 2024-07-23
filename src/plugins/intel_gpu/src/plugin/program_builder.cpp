@@ -158,6 +158,7 @@ std::shared_ptr<cldnn::program> ProgramBuilder::build(const std::vector<std::sha
         allow_new_shape_infer = (m_config.get_property(ov::intel_gpu::allow_new_shape_infer) || allow_new_shape_infer);
     }
 
+    allow_new_shape_infer = true;
     m_config.set_property(ov::intel_gpu::partial_build_program(partial_build));
     m_config.set_property(ov::intel_gpu::optimize_data(true));
     m_config.set_property(ov::intel_gpu::allow_new_shape_infer(allow_new_shape_infer));
