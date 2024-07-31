@@ -273,9 +273,9 @@ void prepare_padding::prepare_padding_new(program &p) {
                 auto new_reorder = std::make_shared<reorder>(node.id() + "_padding_reorder_for_" + input.id(), input.id(), input.get_output_layout());
                 auto& new_reorder_node = p.get_or_create(new_reorder);
                 p.add_intermediate(new_reorder_node, node, input);
-            } else {
-                    p.apply_needed_padding(node, node.get_dependency(0), needed_padding);
             }
+
+            p.apply_needed_padding(node, node.get_dependency(0), needed_padding);
         } else if (nod->is_type<pooling>()) {
             auto& node = nod->as<pooling>();
             auto& input_node = node.get_dependency(0);
