@@ -199,14 +199,13 @@ KERNEL (softmax_gpu_continuous_bfyx)(
         lg_storage[get_sub_group_id()] = my_sum;
 
     barrier(CLK_LOCAL_MEM_FENCE);
-    if (in_data_set_idx == 0)
-    {
-        for (uint j=1; j<get_num_sub_groups(); ++j)
-            my_sum += lg_storage[j];
 
-        lg_storage[0] = my_sum;
+    for (uint offset = get_num_sub_groups() / 2; offset > 0; offset /= 2) {
+        if (in_data_set_idx < offset) {
+            lg_storage[in_data_set_idx] += lg_storage[in_data_set_idx + offset];
+	}
+        barrier(CLK_LOCAL_MEM_FENCE);
     }
-    barrier(CLK_LOCAL_MEM_FENCE);
 
     my_sum = lg_storage[0];
 
@@ -431,14 +430,12 @@ KERNEL (softmax_gpu_continuous_bfyx)(
         lg_storage[get_sub_group_id()] = my_sum;
 
     barrier(CLK_LOCAL_MEM_FENCE);
-    if (in_data_set_idx == 0)
-    {
-        for (uint j=1; j<get_num_sub_groups(); ++j)
-            my_sum += lg_storage[j];
-
-        lg_storage[0] = my_sum;
+    for (uint offset = get_num_sub_groups() / 2; offset > 0; offset /= 2) {
+        if (in_data_set_idx < offset) {
+            lg_storage[in_data_set_idx] += lg_storage[in_data_set_idx + offset];
+	}
+        barrier(CLK_LOCAL_MEM_FENCE);
     }
-    barrier(CLK_LOCAL_MEM_FENCE);
 
     my_sum = lg_storage[0];
 
