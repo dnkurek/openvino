@@ -112,7 +112,7 @@ struct ImplementationManagerLegacy : public ImplementationManager {
         }
 
     ImplementationManagerLegacy(const ImplementationManagerLegacy* other, ValidateFunc vf)
-        : ImplementationManager(other->m_impl_type, other->m_shape_type, std::move(vf))
+        : ImplementationManager(other->m_impl_type, other->m_shape_type, vf)
         , m_factory(other->m_factory)
         , m_keys(other->m_keys) {
             add_keys_with_any_layout();
