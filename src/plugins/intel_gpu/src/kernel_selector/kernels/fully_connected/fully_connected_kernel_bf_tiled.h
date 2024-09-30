@@ -54,7 +54,7 @@ public:
             , outer_ofm(outer_ofm)
             , dispatch_bsv(dispatch_bsv)
             , dispatch_fsv(dispatch_fsv)
-            , exec_options(exec_options)
+            , exec_options(std::move(exec_options))
             , kernel_type(kernel_type)
         {}
 

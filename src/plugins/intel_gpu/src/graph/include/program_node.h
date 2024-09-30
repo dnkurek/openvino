@@ -613,7 +613,7 @@ inline RT test_format(program_node& node, format fmt, std::function<RT(program_n
 
     auto prev_layout = node.get_output_layout(false, 0);
     auto new_layout = prev_layout;
-    set_format_no_any(new_layout, fmt);
+    set_format_no_any(new_layout, std::move(fmt));
     node.set_output_layout(new_layout, false);
 
     // To check if impl exists we modify input[0] and output[0] layouts
