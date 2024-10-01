@@ -12,6 +12,11 @@ namespace kernel_selector {
 class CTCGreedyDecoderKernelRef : public CTCGreedyDecoderKernelBase {
 public:
     using Parent = CTCGreedyDecoderKernelBase;
+    static CTCGreedyDecoderKernelRef& Instance() {
+        static CTCGreedyDecoderKernelRef instance_;
+        return instance_;
+    }
+
     CTCGreedyDecoderKernelRef() : CTCGreedyDecoderKernelBase("ctc_greedy_decoder_ref") {}
     virtual ~CTCGreedyDecoderKernelRef() {}
 

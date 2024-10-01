@@ -10,6 +10,11 @@ namespace kernel_selector {
 class ResampleKernelRef : public ResampleKernelBase {
 public:
     using Parent = ResampleKernelBase;
+    static ResampleKernelRef& Instance() {
+        static ResampleKernelRef instance_;
+        return instance_;
+    }
+
     ResampleKernelRef() : ResampleKernelBase("resample_ref") {}
     virtual ~ResampleKernelRef() {}
 

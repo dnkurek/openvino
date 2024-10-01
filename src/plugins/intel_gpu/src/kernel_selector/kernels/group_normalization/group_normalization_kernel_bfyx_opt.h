@@ -9,6 +9,10 @@ namespace kernel_selector {
 class GroupNormalizationKernelBfyx : public GroupNormalizationKernelBase {
 public:
     using Parent = GroupNormalizationKernelBase;
+    static GroupNormalizationKernelBfyx& Instance() {
+        static GroupNormalizationKernelBfyx instance_;
+        return instance_;
+    }
 
     GroupNormalizationKernelBfyx() : GroupNormalizationKernelBase{"group_normalization_gpu_bfyx_opt"} {}
     virtual ~GroupNormalizationKernelBfyx() {}

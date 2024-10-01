@@ -3,11 +3,10 @@
 //
 
 #include "strided_slice_kernel_selector.h"
-#include "strided_slice_kernel_ref.h"
 
 namespace kernel_selector {
 
-strided_slice_kernel_selector::strided_slice_kernel_selector() { Attach<StridedSliceKernelRef>(); }
+strided_slice_kernel_selector::strided_slice_kernel_selector() { }
 
 KernelsData strided_slice_kernel_selector::GetBestKernels(const Params& params) const {
     return GetNaiveBestKernel(params, KernelType::STRIDED_SLICE);

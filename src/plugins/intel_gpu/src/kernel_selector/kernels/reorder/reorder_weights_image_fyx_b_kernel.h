@@ -9,6 +9,11 @@
 namespace kernel_selector {
 class ReorderWeightsImage_fyx_b_Kernel : public ReorderKernelBase {
 public:
+    static ReorderWeightsImage_fyx_b_Kernel& Instance() {
+        static ReorderWeightsImage_fyx_b_Kernel instance_;
+        return instance_;
+    }
+
     ReorderWeightsImage_fyx_b_Kernel() : ReorderKernelBase("reorder_weights_image_2d_c4_fyx_b") {}
 
     KernelsData GetKernelsData(const Params& params) const override;

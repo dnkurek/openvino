@@ -14,6 +14,11 @@
 namespace kernel_selector {
 class EltwiseKernel_mixed_byxf_and_fs_b_yx_fsv32 : public EltwiseKernelBase {
 public:
+    static EltwiseKernel_mixed_byxf_and_fs_b_yx_fsv32& Instance() {
+        static EltwiseKernel_mixed_byxf_and_fs_b_yx_fsv32 instance_;
+        return instance_;
+    }
+
     EltwiseKernel_mixed_byxf_and_fs_b_yx_fsv32() : EltwiseKernelBase("eltwise_mixed_byxf_and_fs_b_yx_fsv32") {}
     virtual ~EltwiseKernel_mixed_byxf_and_fs_b_yx_fsv32() {}
 

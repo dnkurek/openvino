@@ -10,6 +10,11 @@ namespace kernel_selector {
 class ResampleKernelOnnx : public ResampleKernelBase {
 public:
     using Parent = ResampleKernelBase;
+    static ResampleKernelOnnx& Instance() {
+        static ResampleKernelOnnx instance_;
+        return instance_;
+    }
+
     ResampleKernelOnnx() : ResampleKernelBase("resample_onnx") {}
     virtual ~ResampleKernelOnnx() = default;
 

@@ -10,6 +10,10 @@ namespace kernel_selector {
 class DepthToSpaceKernelRef : public DepthToSpaceKernelBase {
 public:
     using Parent = DepthToSpaceKernelBase;
+    static DepthToSpaceKernelRef& Instance() {
+        static DepthToSpaceKernelRef instance_;
+        return instance_;
+    }
 
     DepthToSpaceKernelRef() : DepthToSpaceKernelBase("depth_to_space_ref") {}
     virtual ~DepthToSpaceKernelRef() {}

@@ -10,6 +10,11 @@ namespace kernel_selector {
 class RoPEKernelRef : public RoPEKernelBase {
 public:
     using Parent = RoPEKernelBase;
+    static RoPEKernelRef& Instance() {
+        static RoPEKernelRef instance_;
+        return instance_;
+    }
+
     RoPEKernelRef() : RoPEKernelBase("rope_ref") {}
     virtual ~RoPEKernelRef() {}
 

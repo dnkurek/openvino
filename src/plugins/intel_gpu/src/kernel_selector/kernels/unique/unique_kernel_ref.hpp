@@ -22,6 +22,11 @@ struct unique_count_params : base_params {
  */
 class UniqueCountKernelRef : public KernelBaseOpenCL {
 public:
+    static UniqueCountKernelRef& Instance() {
+        static UniqueCountKernelRef instance_;
+        return instance_;
+    }
+
     UniqueCountKernelRef() : KernelBaseOpenCL{"unique_count_ref"} {}
     KernelsData GetKernelsData(const Params& params) const override;
     ParamsKey GetSupportedKey() const override;
@@ -48,6 +53,11 @@ struct unique_gather_params : base_params {
  */
 class UniqueGatherKernelRef : public KernelBaseOpenCL {
 public:
+    static UniqueGatherKernelRef& Instance() {
+        static UniqueGatherKernelRef instance_;
+        return instance_;
+    }
+
     UniqueGatherKernelRef() : KernelBaseOpenCL{"unique_gather_ref"} {}
     KernelsData GetKernelsData(const Params& params) const override;
     ParamsKey GetSupportedKey() const override;

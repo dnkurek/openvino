@@ -9,6 +9,12 @@
 namespace kernel_selector {
 class ArgMaxMinKernelGPURef : public ArgMaxMinKernelBase {
 public:
+
+    static ArgMaxMinKernelGPURef& Instance() {
+        static ArgMaxMinKernelGPURef instance_;
+        return instance_;
+    }
+
     ArgMaxMinKernelGPURef() : ArgMaxMinKernelBase("arg_max_min_gpu_ref") {}
     virtual ~ArgMaxMinKernelGPURef() {}
 

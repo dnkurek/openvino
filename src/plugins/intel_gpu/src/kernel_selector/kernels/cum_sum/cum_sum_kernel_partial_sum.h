@@ -9,6 +9,11 @@
 namespace kernel_selector {
 class CumSumKernelPartialSum : public CumSumKernelBase {
 public:
+    static CumSumKernelPartialSum& Instance() {
+        static CumSumKernelPartialSum instance_;
+        return instance_;
+    }
+
     CumSumKernelPartialSum() : CumSumKernelBase("cum_sum_partial_sum") {}
     virtual ~CumSumKernelPartialSum() = default;
 

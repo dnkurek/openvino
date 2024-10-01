@@ -13,6 +13,10 @@ namespace kernel_selector {
 class FullyConnected_bfyx_Ref : public FullyConnectedKernelBase {
 public:
     using Parent = FullyConnectedKernelBase;
+    static FullyConnected_bfyx_Ref& Instance() {
+        static FullyConnected_bfyx_Ref instance_;
+        return instance_;
+    }
 
     FullyConnected_bfyx_Ref() : Parent("fully_connected_gpu_bfyx_ref") {}
 

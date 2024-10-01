@@ -9,6 +9,11 @@
 namespace kernel_selector {
 class PoolingKernelGPUByxfPaddingOpt : public PoolingKernelBase {
 public:
+    static PoolingKernelGPUByxfPaddingOpt& Instance() {
+        static PoolingKernelGPUByxfPaddingOpt instance_;
+        return instance_;
+    }
+
     PoolingKernelGPUByxfPaddingOpt() : PoolingKernelBase("pooling_gpu_byxf_padding_opt") {}
     virtual ~PoolingKernelGPUByxfPaddingOpt() {}
 

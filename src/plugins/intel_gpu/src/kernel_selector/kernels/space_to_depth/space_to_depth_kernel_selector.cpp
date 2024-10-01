@@ -3,11 +3,10 @@
 //
 
 #include "space_to_depth_kernel_selector.h"
-#include "space_to_depth_kernel_ref.h"
 
 namespace kernel_selector {
 
-    space_to_depth_kernel_selector::space_to_depth_kernel_selector() { Attach<SpaceToDepthKernelRef>(); }
+    space_to_depth_kernel_selector::space_to_depth_kernel_selector() { }
 
     KernelsData space_to_depth_kernel_selector::GetBestKernels(const Params& params) const {
         return GetNaiveBestKernel(params, KernelType::SPACE_TO_DEPTH);

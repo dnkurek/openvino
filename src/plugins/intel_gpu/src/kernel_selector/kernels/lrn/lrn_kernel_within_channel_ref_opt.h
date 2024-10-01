@@ -11,6 +11,11 @@ namespace kernel_selector {
 class LRNKernelWithinChannelOpt : public LRNKernelBase {
 public:
     using Parent = LRNKernelBase;
+    static LRNKernelWithinChannelOpt& Instance() {
+        static LRNKernelWithinChannelOpt instance_;
+        return instance_;
+    }
+
     LRNKernelWithinChannelOpt() : Parent("lrn_gpu_within_channel_opt") {}
     virtual ~LRNKernelWithinChannelOpt() {}
     KernelsData GetKernelsData(const Params& params) const override;

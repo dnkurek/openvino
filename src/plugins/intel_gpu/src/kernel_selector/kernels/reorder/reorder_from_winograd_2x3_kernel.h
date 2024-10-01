@@ -9,6 +9,11 @@
 namespace kernel_selector {
 class ReorderFromWinograd2x3Kernel : public ReorderKernelBase {
 public:
+    static ReorderFromWinograd2x3Kernel& Instance() {
+        static ReorderFromWinograd2x3Kernel instance_;
+        return instance_;
+    }
+
     ReorderFromWinograd2x3Kernel() : ReorderKernelBase("reorder_from_winograd_2x3_s1") {}
 
     KernelsData GetKernelsData(const Params& params) const override;

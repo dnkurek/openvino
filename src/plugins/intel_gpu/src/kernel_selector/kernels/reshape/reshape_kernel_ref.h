@@ -16,6 +16,11 @@ struct reshape_params : public base_params {
 
 class ReshapeKernelRef : public KernelBaseOpenCL {
 public:
+    static ReshapeKernelRef& Instance() {
+        static ReshapeKernelRef instance_;
+        return instance_;
+    }
+
     ReshapeKernelRef() : KernelBaseOpenCL("reshape_ref") {}
     virtual ~ReshapeKernelRef() {}
 

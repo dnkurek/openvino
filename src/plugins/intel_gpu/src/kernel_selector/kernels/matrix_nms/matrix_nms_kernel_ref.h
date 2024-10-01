@@ -47,6 +47,11 @@ struct matrix_nms_params : public base_params {
 
 class MatrixNmsKernelRef : public KernelBaseOpenCL {
 public:
+    static MatrixNmsKernelRef& Instance() {
+        static MatrixNmsKernelRef instance_;
+        return instance_;
+    }
+
     MatrixNmsKernelRef() : KernelBaseOpenCL("matrix_nms_ref") {}
 
     using DispatchData = CommonDispatchData;

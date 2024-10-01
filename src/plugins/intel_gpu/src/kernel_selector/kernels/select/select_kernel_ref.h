@@ -9,6 +9,11 @@
 namespace kernel_selector {
 class SelectKernelRef : public SelectKernelBase {
 public:
+    static SelectKernelRef& Instance() {
+        static SelectKernelRef instance_;
+        return instance_;
+    }
+
     SelectKernelRef() : SelectKernelBase("select_gpu_ref") {}
     virtual ~SelectKernelRef() {}
 

@@ -9,6 +9,11 @@
 namespace kernel_selector {
 class PoolingKernel_b_fs_yx_fsv16 : public PoolingKernelBase {
 public:
+    static PoolingKernel_b_fs_yx_fsv16& Instance() {
+        static PoolingKernel_b_fs_yx_fsv16 instance_;
+        return instance_;
+    }
+
     PoolingKernel_b_fs_yx_fsv16() : PoolingKernelBase("pooling_gpu_blocked") {}
     virtual ~PoolingKernel_b_fs_yx_fsv16() {}
 

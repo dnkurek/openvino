@@ -9,6 +9,11 @@
 namespace kernel_selector {
 class ReorderWeightsOpt : public ReorderKernelBase {
 public:
+    static ReorderWeightsOpt& Instance() {
+        static ReorderWeightsOpt instance_;
+        return instance_;
+    }
+
     ReorderWeightsOpt() : ReorderKernelBase("reorder_weights_opt") {}
     virtual ~ReorderWeightsOpt() {}
 

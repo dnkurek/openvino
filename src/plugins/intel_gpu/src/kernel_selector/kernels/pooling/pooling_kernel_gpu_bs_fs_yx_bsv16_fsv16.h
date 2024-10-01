@@ -10,6 +10,11 @@
 namespace kernel_selector {
 class Pooling_kernel_gpu_bs_fs_yx_bsv_16_fsv16 : public PoolingKernelBase {
 public:
+    static Pooling_kernel_gpu_bs_fs_yx_bsv_16_fsv16& Instance() {
+        static Pooling_kernel_gpu_bs_fs_yx_bsv_16_fsv16 instance_;
+        return instance_;
+    }
+
     Pooling_kernel_gpu_bs_fs_yx_bsv_16_fsv16() : PoolingKernelBase("pooling_gpu_bs_fs_yx_bsv16_fsv16") {}
     virtual ~Pooling_kernel_gpu_bs_fs_yx_bsv_16_fsv16() {}
 

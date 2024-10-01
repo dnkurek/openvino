@@ -16,6 +16,11 @@ struct dynamic_quantize_params : public base_params {
 
 class DynamicQuantizeKernelRef : public KernelBaseOpenCL {
 public:
+    static DynamicQuantizeKernelRef& Instance() {
+        static DynamicQuantizeKernelRef instance_;
+        return instance_;
+    }
+
     DynamicQuantizeKernelRef() : KernelBaseOpenCL("dynamic_quantize_gpu_ref") {}
     virtual ~DynamicQuantizeKernelRef() {}
 

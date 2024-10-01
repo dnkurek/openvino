@@ -3,12 +3,9 @@
 //
 
 #include "rope_kernel_selector.h"
-#include "rope_kernel_ref.h"
 
 namespace kernel_selector {
-rope_kernel_selector::rope_kernel_selector() {
-    Attach<RoPEKernelRef>();
-}
+rope_kernel_selector::rope_kernel_selector() { }
 
 KernelsData rope_kernel_selector::GetBestKernels(const Params& params) const {
     return GetNaiveBestKernel(params, KernelType::ROPE);

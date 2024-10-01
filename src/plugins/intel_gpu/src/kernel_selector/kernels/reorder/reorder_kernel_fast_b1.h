@@ -9,6 +9,11 @@
 namespace kernel_selector {
 class ReorderKernelFastBatch1 : public ReorderKernelBase {
 public:
+    static ReorderKernelFastBatch1& Instance() {
+        static ReorderKernelFastBatch1 instance_;
+        return instance_;
+    }
+
     ReorderKernelFastBatch1() : ReorderKernelBase("reorder_data_fast_b1") {}
 
     bool Validate(const Params& p) const override;

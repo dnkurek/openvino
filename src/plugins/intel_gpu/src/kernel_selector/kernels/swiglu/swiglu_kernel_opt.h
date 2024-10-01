@@ -9,6 +9,11 @@
 namespace kernel_selector {
 class SwiGLUKernelOpt : public SwiGLUKernelBase {
 public:
+    static SwiGLUKernelOpt& Instance() {
+        static SwiGLUKernelOpt instance_;
+        return instance_;
+    }
+
     SwiGLUKernelOpt() : SwiGLUKernelBase("swiglu_gpu_opt") {}
     virtual ~SwiGLUKernelOpt() {}
 

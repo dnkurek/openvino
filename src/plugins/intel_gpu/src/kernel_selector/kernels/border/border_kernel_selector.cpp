@@ -3,10 +3,9 @@
 //
 
 #include "border_kernel_selector.h"
-#include "border_kernel_ref.h"
 
 namespace kernel_selector {
-border_kernel_selector::border_kernel_selector() { Attach<BorderKernelRef>(); }
+border_kernel_selector::border_kernel_selector() { }
 
 KernelsData border_kernel_selector::GetBestKernels(const Params& params) const {
     return GetNaiveBestKernel(params, KernelType::BORDER);

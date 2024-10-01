@@ -11,6 +11,11 @@ namespace kernel_selector {
 class LRNKernelRef : public LRNKernelBase {
 public:
     using Parent = LRNKernelBase;
+    static LRNKernelRef& Instance() {
+        static LRNKernelRef instance_;
+        return instance_;
+    }
+
     LRNKernelRef() : LRNKernelBase("lrn_ref") {}
     virtual ~LRNKernelRef() {}
 

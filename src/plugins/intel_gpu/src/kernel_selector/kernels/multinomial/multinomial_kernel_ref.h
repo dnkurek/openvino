@@ -23,6 +23,11 @@ struct multinomial_params : public base_params {
 
 class MultinomialKernelRef : public KernelBaseOpenCL {
 public:
+    static MultinomialKernelRef& Instance() {
+        static MultinomialKernelRef instance_;
+        return instance_;
+    }
+
     MultinomialKernelRef() : KernelBaseOpenCL{"multinomial_ref"} {}
     KernelsData GetKernelsData(const Params& params) const override;
     ParamsKey GetSupportedKey() const override;

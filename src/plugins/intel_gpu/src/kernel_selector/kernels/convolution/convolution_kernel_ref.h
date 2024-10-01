@@ -11,6 +11,11 @@ namespace kernel_selector {
 
 class ConvolutionKernel_Ref : public ConvolutionKernelBase {
 public:
+    static ConvolutionKernel_Ref& Instance() {
+        static ConvolutionKernel_Ref instance_;
+        return instance_;
+    }
+
     ConvolutionKernel_Ref() : ConvolutionKernelBase("convolution_gpu_ref") {}
     virtual ~ConvolutionKernel_Ref() {}
 

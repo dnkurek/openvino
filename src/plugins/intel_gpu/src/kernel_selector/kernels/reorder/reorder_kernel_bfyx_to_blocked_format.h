@@ -9,6 +9,11 @@
 namespace kernel_selector {
 class ReorderKernel_bfyx_to_blocked_format : public ReorderKernelBase {
 public:
+    static ReorderKernel_bfyx_to_blocked_format& Instance() {
+        static ReorderKernel_bfyx_to_blocked_format instance_;
+        return instance_;
+    }
+
     ReorderKernel_bfyx_to_blocked_format() : ReorderKernelBase("reorder_data_bfyx_to_blocked_format") {}
 
     bool Validate(const Params& p) const override;

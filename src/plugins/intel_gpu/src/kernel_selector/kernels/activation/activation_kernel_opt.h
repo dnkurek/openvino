@@ -12,6 +12,12 @@ namespace kernel_selector {
 class ActivationKernelOpt : public ActivationKernelBase {
 public:
     using Parent = ActivationKernelBase;
+
+    static ActivationKernelOpt& Instance() {
+        static ActivationKernelOpt instance_;
+        return instance_;
+    }
+
     ActivationKernelOpt() : Parent("activation_opt") {}
     virtual ~ActivationKernelOpt() {}
 

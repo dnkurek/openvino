@@ -10,6 +10,11 @@ namespace kernel_selector {
 class RMSKernelRef : public RMSKernelBase {
 public:
     using Parent = RMSKernelBase;
+    static RMSKernelRef& Instance() {
+        static RMSKernelRef instance_;
+        return instance_;
+    }
+
     RMSKernelRef() : RMSKernelBase("rms_gpu_ref") {}
     virtual ~RMSKernelRef() {}
 

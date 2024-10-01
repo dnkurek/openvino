@@ -9,6 +9,11 @@
 namespace kernel_selector {
 class PoolingKernelGPUBfyxBlockOpt : public PoolingKernelBase {
 public:
+    static PoolingKernelGPUBfyxBlockOpt& Instance() {
+        static PoolingKernelGPUBfyxBlockOpt instance_;
+        return instance_;
+    }
+
     PoolingKernelGPUBfyxBlockOpt() : PoolingKernelBase("pooling_gpu_bfyx_block_opt") {}
     virtual ~PoolingKernelGPUBfyxBlockOpt() {}
 

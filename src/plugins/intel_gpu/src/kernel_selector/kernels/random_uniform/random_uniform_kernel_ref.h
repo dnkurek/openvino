@@ -29,6 +29,11 @@ struct random_uniform_params: public base_params {
  */
 class RandomUniformKernelRef: public KernelBaseOpenCL {
 public:
+    static RandomUniformKernelRef& Instance() {
+        static RandomUniformKernelRef instance_;
+        return instance_;
+    }
+
     RandomUniformKernelRef() :
         KernelBaseOpenCL{"random_uniform_ref"} {
     }

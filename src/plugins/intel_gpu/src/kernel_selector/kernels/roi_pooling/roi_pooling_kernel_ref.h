@@ -13,6 +13,11 @@ namespace kernel_selector {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 class ROIPoolingKernelRef : public ROIPoolingKernelBase {
 public:
+    static ROIPoolingKernelRef& Instance() {
+        static ROIPoolingKernelRef instance_;
+        return instance_;
+    }
+
     ROIPoolingKernelRef() : ROIPoolingKernelBase("roi_pooling_ref") {}
     virtual ~ROIPoolingKernelRef() {}
 

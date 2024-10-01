@@ -18,6 +18,11 @@ struct eye_params : public base_params {
 
 class EyeKernelRef : public KernelBaseOpenCL {
 public:
+    static EyeKernelRef& Instance() {
+        static EyeKernelRef instance_;
+        return instance_;
+    }
+
     EyeKernelRef() : KernelBaseOpenCL{"eye_ref"} {}
     KernelsData GetKernelsData(const Params& params) const override;
     KernelsPriority GetKernelsPriority(const Params& params) const override;

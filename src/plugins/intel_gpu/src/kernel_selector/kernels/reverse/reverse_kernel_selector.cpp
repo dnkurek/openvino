@@ -4,13 +4,9 @@
 
 #include "reverse_kernel_selector.h"
 
-#include "reverse_kernel_ref.h"
-
 namespace kernel_selector {
 
-reverse_kernel_selector::reverse_kernel_selector() {
-    Attach<ReverseKernelRef>();
-}
+reverse_kernel_selector::reverse_kernel_selector() { }
 
 KernelsData reverse_kernel_selector::GetBestKernels(const Params& params) const {
     return GetNaiveBestKernel(params, KernelType::REVERSE);

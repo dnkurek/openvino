@@ -3,12 +3,9 @@
 //
 
 #include "grn_kernel_selector.h"
-#include "grn_kernel_ref.h"
 
 namespace kernel_selector {
-grn_kernel_selector::grn_kernel_selector() {
-    Attach<GRNKernelRef>();
-}
+grn_kernel_selector::grn_kernel_selector() { }
 
 KernelsData grn_kernel_selector::GetBestKernels(const Params& params) const {
     return GetNaiveBestKernel(params, KernelType::GRN);

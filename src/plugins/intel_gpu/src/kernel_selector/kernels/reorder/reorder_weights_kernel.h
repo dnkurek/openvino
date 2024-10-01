@@ -9,6 +9,11 @@
 namespace kernel_selector {
 class ReorderWeightsKernel : public ReorderKernelBase {
 public:
+    static ReorderWeightsKernel& Instance() {
+        static ReorderWeightsKernel instance_;
+        return instance_;
+    }
+
     ReorderWeightsKernel() : ReorderKernelBase("reorder_weights") {}
     virtual ~ReorderWeightsKernel() {}
     JitConstants GetJitConstants(const reorder_weights_params& params) const override;

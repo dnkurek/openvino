@@ -10,6 +10,11 @@
 namespace kernel_selector {
 class ReduceKernelSimpleToScalar : public ReduceKernelBase {
 public:
+    static ReduceKernelSimpleToScalar& Instance() {
+        static ReduceKernelSimpleToScalar instance_;
+        return instance_;
+    }
+
     ReduceKernelSimpleToScalar() : ReduceKernelBase("reduce_simple_to_scalar") {}
     virtual ~ReduceKernelSimpleToScalar() {}
     CommonDispatchData SetDefault(const reduce_params& params) const override;

@@ -9,6 +9,11 @@
 namespace kernel_selector {
 class CumSumKernelRef : public CumSumKernelBase {
 public:
+    static CumSumKernelRef& Instance() {
+        static CumSumKernelRef instance_;
+        return instance_;
+    }
+
     CumSumKernelRef() : CumSumKernelBase("cum_sum_ref") {}
     virtual ~CumSumKernelRef() = default;
 protected:

@@ -22,6 +22,11 @@ struct gather_nd_params : public base_params {
 
 class GatherNDKernelRef : public KernelBaseOpenCL {
 public:
+    static GatherNDKernelRef& Instance() {
+        static GatherNDKernelRef instance_;
+        return instance_;
+    }
+
     GatherNDKernelRef() : KernelBaseOpenCL("gather_nd_ref") {}
     virtual ~GatherNDKernelRef() {}
     virtual JitConstants GetJitConstants(const gather_nd_params& params) const;

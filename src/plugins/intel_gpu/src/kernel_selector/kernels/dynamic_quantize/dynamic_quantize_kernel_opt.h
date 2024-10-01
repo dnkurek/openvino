@@ -13,6 +13,11 @@ namespace kernel_selector {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 class DynamicQuantizeKernelOpt : public KernelBaseOpenCL {
 public:
+    static DynamicQuantizeKernelOpt& Instance() {
+        static DynamicQuantizeKernelOpt instance_;
+        return instance_;
+    }
+
     DynamicQuantizeKernelOpt() : KernelBaseOpenCL("dynamic_quantize_gpu_opt") {}
     virtual ~DynamicQuantizeKernelOpt() {}
 

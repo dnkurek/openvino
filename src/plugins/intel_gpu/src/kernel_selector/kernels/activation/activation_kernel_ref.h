@@ -14,6 +14,11 @@ public:
     using Parent = ActivationKernelBase;
     using Parent::Parent;
 
+    static ActivationKernelRef& Instance() {
+        static ActivationKernelRef instance_;
+        return instance_;
+    }
+
     ActivationKernelRef() : ActivationKernelBase("activation_ref") {}
     virtual ~ActivationKernelRef() {}
 

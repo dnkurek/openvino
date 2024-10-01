@@ -19,6 +19,11 @@ struct experimental_detectron_generate_proposals_single_image_params : public ba
 
 class ExperimentalDetectronGenerateProposalsSingleImageRef : public KernelBaseOpenCL {
 public:
+    static ExperimentalDetectronGenerateProposalsSingleImageRef& Instance() {
+        static ExperimentalDetectronGenerateProposalsSingleImageRef instance_;
+        return instance_;
+    }
+
     ExperimentalDetectronGenerateProposalsSingleImageRef()
     : KernelBaseOpenCL("experimental_detectron_generate_proposals_single_image_ref") {}
 

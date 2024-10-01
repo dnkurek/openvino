@@ -16,6 +16,11 @@ struct tile_params : public base_params {
 
 class TileKernelRef : public KernelBaseOpenCL {
 public:
+    static TileKernelRef& Instance() {
+        static TileKernelRef instance_;
+        return instance_;
+    }
+
     TileKernelRef() : KernelBaseOpenCL("tile_ref") {}
     virtual ~TileKernelRef() {}
 

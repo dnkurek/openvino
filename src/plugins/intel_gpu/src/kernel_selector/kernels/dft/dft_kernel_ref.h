@@ -29,6 +29,11 @@ class DFTKernelRef : public KernelBaseOpenCL {
     JitConstants GetJitConstants(const dft_params& params) const;
 
 public:
+    static DFTKernelRef& Instance() {
+        static DFTKernelRef instance_;
+        return instance_;
+    }
+
     DFTKernelRef() : KernelBaseOpenCL{"dft_ref"} {}
 };
 

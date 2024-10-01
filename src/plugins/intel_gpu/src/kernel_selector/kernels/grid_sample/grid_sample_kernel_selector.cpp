@@ -4,21 +4,12 @@
 
 #include "grid_sample_kernel_selector.hpp"
 
-#include "grid_sample_kernel_ref.hpp"
-
 namespace kernel_selector {
 
-grid_sample_kernel_selector::grid_sample_kernel_selector() {
-    Attach<GridSampleKernelRef>();
-}
+grid_sample_kernel_selector::grid_sample_kernel_selector() { }
 
 KernelsData grid_sample_kernel_selector::GetBestKernels(const Params& params) const {
     return GetNaiveBestKernel(params, KernelType::GRID_SAMPLE);
-}
-
-grid_sample_kernel_selector& grid_sample_kernel_selector::Instance() {
-    static grid_sample_kernel_selector instance;
-    return instance;
 }
 
 }  // namespace kernel_selector

@@ -4,6 +4,7 @@
 
 #include "impls/registry/implementation_manager.hpp"
 #include "intel_gpu/primitives/reorder.hpp"
+#include "reorder/reorder_kernel_selector.h"
 #include "program_node.h"
 
 #include <memory>
@@ -12,6 +13,7 @@ namespace ocl {
 
 struct ReorderImplementationManager : public ImplementationManager {
     OV_GPU_PRIMITIVE_IMPL("ocl::reorder")
+    kernel_selector::reorder_kernel_selector kernel_selector;
     ReorderImplementationManager(shape_types shape_type, ValidateFunc vf = nullptr) : ImplementationManager(impl_types::ocl, shape_type, vf) {}
 
     std::unique_ptr<primitive_impl> create_impl(const program_node& node, const kernel_impl_params& params) const override;

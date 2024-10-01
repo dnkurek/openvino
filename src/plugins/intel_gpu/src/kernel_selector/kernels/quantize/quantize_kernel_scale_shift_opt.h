@@ -11,6 +11,10 @@ namespace kernel_selector {
 class QuantizeKernelScaleShift : public QuantizeKernelBase {
 public:
     using Parent = QuantizeKernelBase;
+    static QuantizeKernelScaleShift& Instance() {
+        static QuantizeKernelScaleShift instance_;
+        return instance_;
+    }
 
     QuantizeKernelScaleShift() : QuantizeKernelBase("quantize_gpu_scale_shift_opt") {}
     virtual ~QuantizeKernelScaleShift() {}

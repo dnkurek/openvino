@@ -9,6 +9,11 @@
 namespace kernel_selector {
 class EltwiseKernelRef : public EltwiseKernelBase {
 public:
+    static EltwiseKernelRef& Instance() {
+        static EltwiseKernelRef instance_;
+        return instance_;
+    }
+
     EltwiseKernelRef() : EltwiseKernelBase("generic_eltwise_ref") {}
     virtual ~EltwiseKernelRef() {}
 

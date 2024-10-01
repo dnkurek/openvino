@@ -10,6 +10,11 @@ namespace kernel_selector {
 
 class ConcatenationKernel_simple_Ref : public ConcatenationKernelBase {
 public:
+    static ConcatenationKernel_simple_Ref& Instance() {
+        static ConcatenationKernel_simple_Ref instance_;
+        return instance_;
+    }
+
     ConcatenationKernel_simple_Ref() : ConcatenationKernelBase("concatenation_gpu_simple_ref") {}
     virtual ~ConcatenationKernel_simple_Ref() {}
 

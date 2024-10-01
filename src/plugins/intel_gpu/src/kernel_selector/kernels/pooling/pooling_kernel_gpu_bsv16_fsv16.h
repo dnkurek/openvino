@@ -11,6 +11,10 @@ namespace kernel_selector {
 class PoolingKernel_bsv16_fsv16 : public PoolingKernelBase {
 public:
     using Parent = PoolingKernelBase;
+    static PoolingKernel_bsv16_fsv16& Instance() {
+        static PoolingKernel_bsv16_fsv16 instance_;
+        return instance_;
+    }
 
     PoolingKernel_bsv16_fsv16() : PoolingKernelBase("pooling_gpu_bsv16_fsv16") {}
 

@@ -10,6 +10,11 @@ namespace kernel_selector {
 class SDPAKernelRef : public SDPAKernelBase {
 public:
     using Parent = SDPAKernelBase;
+    static SDPAKernelRef& Instance() {
+        static SDPAKernelRef instance_;
+        return instance_;
+    }
+
     SDPAKernelRef() : SDPAKernelBase("sdpa_ref") {}
     virtual ~SDPAKernelRef() {}
 

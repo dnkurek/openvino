@@ -19,6 +19,11 @@
 namespace kernel_selector {
 class EltwiseKernel_blocked_opt : public EltwiseKernelBase {
 public:
+    static EltwiseKernel_blocked_opt& Instance() {
+        static EltwiseKernel_blocked_opt instance_;
+        return instance_;
+    }
+
     EltwiseKernel_blocked_opt() : EltwiseKernelBase("eltwise_blocked_opt") {}
     virtual ~EltwiseKernel_blocked_opt() {}
 

@@ -11,6 +11,11 @@ namespace kernel_selector {
 class LRNKernelWithinChannelByxfOpt : public LRNKernelBase {
 public:
     using Parent = LRNKernelBase;
+    static LRNKernelWithinChannelByxfOpt& Instance() {
+        static LRNKernelWithinChannelByxfOpt instance_;
+        return instance_;
+    }
+
     LRNKernelWithinChannelByxfOpt() : LRNKernelBase("lrn_within_channel_byxf_opt") {}
     virtual ~LRNKernelWithinChannelByxfOpt() {}
 

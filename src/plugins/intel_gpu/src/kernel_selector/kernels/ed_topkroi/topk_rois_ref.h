@@ -22,6 +22,11 @@ struct experimental_detectron_topk_roi_params : public base_params {
  */
 class ExperimentalDetectronTopKROIRef : public KernelBaseOpenCL {
 public:
+    static ExperimentalDetectronTopKROIRef& Instance() {
+        static ExperimentalDetectronTopKROIRef instance_;
+        return instance_;
+    }
+
     ExperimentalDetectronTopKROIRef() : KernelBaseOpenCL("experimental_detectron_topk_rois_ref") {}
 
 private:

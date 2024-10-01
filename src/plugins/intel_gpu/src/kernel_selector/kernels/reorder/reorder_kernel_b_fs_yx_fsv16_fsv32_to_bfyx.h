@@ -9,6 +9,11 @@
 namespace kernel_selector {
 class ReorderKernel_b_fs_yx_fsv16_fsv32_to_bfyx : public ReorderKernelBase {
 public:
+    static ReorderKernel_b_fs_yx_fsv16_fsv32_to_bfyx& Instance() {
+        static ReorderKernel_b_fs_yx_fsv16_fsv32_to_bfyx instance_;
+        return instance_;
+    }
+
     ReorderKernel_b_fs_yx_fsv16_fsv32_to_bfyx() : ReorderKernelBase("reorder_data_b_fs_yx_fsv16_fsv32_to_bfyx") {}
 
     bool Validate(const Params& p) const override;

@@ -3,11 +3,10 @@
 //
 
 #include "reshape_kernel_selector.h"
-#include "reshape_kernel_ref.h"
 
 namespace kernel_selector {
 
-reshape_kernel_selector::reshape_kernel_selector() { Attach<ReshapeKernelRef>(); }
+reshape_kernel_selector::reshape_kernel_selector() { }
 
 KernelsData reshape_kernel_selector::GetBestKernels(const Params& params) const {
     return GetNaiveBestKernel(params, KernelType::RESHAPE);

@@ -4,13 +4,9 @@
 
 #include "matrix_nms_kernel_selector.h"
 
-#include "matrix_nms_kernel_ref.h"
-
 namespace kernel_selector {
 
-matrix_nms_kernel_selector::matrix_nms_kernel_selector() {
-    Attach<MatrixNmsKernelRef>();
-}
+matrix_nms_kernel_selector::matrix_nms_kernel_selector() { }
 
 KernelsData matrix_nms_kernel_selector::GetBestKernels(const Params& params) const {
     return GetNaiveBestKernel(params, KernelType::MATRIX_NMS);

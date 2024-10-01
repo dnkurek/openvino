@@ -4,18 +4,8 @@
 
 #include "multiclass_nms_kernel_selector.h"
 
-#include "multiclass_nms_kernel_ref.h"
-
 namespace kernel_selector {
-multiclass_nms_kernel_selector::multiclass_nms_kernel_selector() {
-    Attach<MulticlassNmsKernelRef>();
-}
-
-multiclass_nms_kernel_selector&
-multiclass_nms_kernel_selector::Instance() {
-    static multiclass_nms_kernel_selector instance_;
-    return instance_;
-}
+multiclass_nms_kernel_selector::multiclass_nms_kernel_selector() { }
 
 KernelsData multiclass_nms_kernel_selector::GetBestKernels(
     const Params& params) const {

@@ -9,6 +9,12 @@
 namespace kernel_selector {
 class ArgMaxMinKernelOpt : public ArgMaxMinKernelBase {
 public:
+
+    static ArgMaxMinKernelOpt& Instance() {
+        static ArgMaxMinKernelOpt instance_;
+        return instance_;
+    }
+
     ArgMaxMinKernelOpt() : ArgMaxMinKernelBase("arg_max_min_opt") {}
     virtual ~ArgMaxMinKernelOpt() {}
 

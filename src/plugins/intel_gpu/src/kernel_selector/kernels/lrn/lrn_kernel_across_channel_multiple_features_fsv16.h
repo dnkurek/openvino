@@ -10,6 +10,11 @@ namespace kernel_selector {
 class LRNKernelAcrossChannelMultipleFeaturesFSV16 : public LRNKernelAcrossChannelMultipleFeatures {
 public:
     using Parent = LRNKernelAcrossChannelMultipleFeatures;
+    static LRNKernelAcrossChannelMultipleFeaturesFSV16& Instance() {
+        static LRNKernelAcrossChannelMultipleFeaturesFSV16 instance_;
+        return instance_;
+    }
+
     LRNKernelAcrossChannelMultipleFeaturesFSV16() : Parent("lrn_gpu_across_channel_multiple_features_fsv16") {}
 
     ParamsKey GetSupportedKey() const override;

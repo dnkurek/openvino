@@ -9,6 +9,11 @@
 namespace kernel_selector {
 class ArgMaxMinKernelAxis : public ArgMaxMinKernelBase {
 public:
+    static ArgMaxMinKernelAxis& Instance() {
+        static ArgMaxMinKernelAxis instance_;
+        return instance_;
+    }
+
     ArgMaxMinKernelAxis() : ArgMaxMinKernelBase("arg_max_min_axis") {}
     virtual ~ArgMaxMinKernelAxis() {}
 

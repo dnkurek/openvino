@@ -18,6 +18,11 @@ struct scatter_nd_update_params : public base_params {
 
 class ScatterNDUpdateKernelRef : public KernelBaseOpenCL {
 public:
+    static ScatterNDUpdateKernelRef& Instance() {
+        static ScatterNDUpdateKernelRef instance_;
+        return instance_;
+    }
+
     struct DispatchData : public CommonDispatchData {
         size_t indicesLastDim;
     };

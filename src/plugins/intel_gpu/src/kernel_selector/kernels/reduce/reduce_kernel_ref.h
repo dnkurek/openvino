@@ -10,6 +10,11 @@
 namespace kernel_selector {
 class ReduceKernelRef : public ReduceKernelBase {
 public:
+    static ReduceKernelRef& Instance() {
+        static ReduceKernelRef instance_;
+        return instance_;
+    }
+
     ReduceKernelRef() : ReduceKernelBase("reduce_ref") {}
     virtual ~ReduceKernelRef() {}
     CommonDispatchData SetDefault(const reduce_params& params) const override;

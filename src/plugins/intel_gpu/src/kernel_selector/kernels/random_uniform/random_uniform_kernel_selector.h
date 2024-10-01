@@ -3,6 +3,7 @@
 //
 
 #include "kernel_selector.h"
+#include "random_uniform_kernel_ref.h"
 
 #pragma once
 
@@ -18,9 +19,15 @@ public:
         return instance_;
     }
 
+    struct ImplementationList* GetImpls() const override {
+	static KernelBase* list[] = { &RandomUniformKernelRef::Instance() };
+	static struct ImplementationList impls = { list, 1 };
+
+	return &impls;
+    }
+
     KernelsData GetBestKernels(const Params &params) const override;
 
-private:
     random_uniform_kernel_selector();
 };
 

@@ -9,6 +9,11 @@
 namespace kernel_selector {
 class PoolingKernelGPURef : public PoolingKernelBase {
 public:
+    static PoolingKernelGPURef& Instance() {
+        static PoolingKernelGPURef instance_;
+        return instance_;
+    }
+
     PoolingKernelGPURef() : PoolingKernelBase("pooling_gpu_ref") {}
     virtual ~PoolingKernelGPURef() {}
 

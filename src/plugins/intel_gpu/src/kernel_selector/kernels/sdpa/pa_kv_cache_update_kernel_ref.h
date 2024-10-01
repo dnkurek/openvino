@@ -18,6 +18,11 @@ struct kv_cache_update_params : base_params {
 
 class KVCacheUpdateKernelRef : public KernelBaseOpenCL {
 public:
+    static KVCacheUpdateKernelRef& Instance() {
+        static KVCacheUpdateKernelRef instance_;
+        return instance_;
+    }
+
     KVCacheUpdateKernelRef() : KernelBaseOpenCL{"pa_kv_cache_update_ref"} {}
     KernelsData GetKernelsData(const Params& params) const override;
     ParamsKey GetSupportedKey() const override;

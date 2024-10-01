@@ -9,6 +9,11 @@
 namespace kernel_selector {
 class BorderKernelRef : public BorderKernelBase {
 public:
+    static BorderKernelRef& Instance() {
+        static BorderKernelRef instance_;
+        return instance_;
+    }
+
     BorderKernelRef() : BorderKernelBase("border_gpu_ref") {}
 
     KernelsData GetKernelsData(const Params& params) const override;

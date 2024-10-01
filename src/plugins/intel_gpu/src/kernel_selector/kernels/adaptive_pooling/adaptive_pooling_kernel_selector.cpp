@@ -3,11 +3,9 @@
 //
 
 #include "adaptive_pooling_kernel_selector.h"
-#include "adaptive_pooling_kernel_ref.h"
 
 namespace kernel_selector {
 adaptive_pooling_kernel_selector::adaptive_pooling_kernel_selector() {
-    Attach<AdaptivePoolingRef>();
 }
 
 adaptive_pooling_kernel_selector& adaptive_pooling_kernel_selector::Instance() {

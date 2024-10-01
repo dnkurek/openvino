@@ -21,6 +21,11 @@ struct experimental_detectron_roi_feature_extractor_params : public base_params 
 
 class ExperimentalDetectronROIFeatureExtractorRef : public KernelBaseOpenCL {
 public:
+    static ExperimentalDetectronROIFeatureExtractorRef& Instance() {
+        static ExperimentalDetectronROIFeatureExtractorRef instance_;
+        return instance_;
+    }
+
     ExperimentalDetectronROIFeatureExtractorRef() : KernelBaseOpenCL("experimental_detectron_roi_feature_extractor_ref") {}
     ~ExperimentalDetectronROIFeatureExtractorRef() = default;
 

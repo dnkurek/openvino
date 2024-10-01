@@ -9,6 +9,11 @@
 namespace kernel_selector {
 class BatchToSpaceKernelRef : public BatchToSpaceKernelBase {
 public:
+    static BatchToSpaceKernelRef& Instance() {
+        static BatchToSpaceKernelRef instance_;
+        return instance_;
+    }
+
     using Parent = BatchToSpaceKernelBase;
     BatchToSpaceKernelRef() : BatchToSpaceKernelBase("batch_to_space_ref") {}
     virtual ~BatchToSpaceKernelRef() {}

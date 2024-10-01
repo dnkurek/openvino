@@ -10,6 +10,11 @@ namespace kernel_selector {
 
 class ConcatenationKernel_depth_bfyx_no_pitch : public ConcatenationKernelBase {
 public:
+    static ConcatenationKernel_depth_bfyx_no_pitch& Instance() {
+        static ConcatenationKernel_depth_bfyx_no_pitch instance_;
+        return instance_;
+    }
+
     ConcatenationKernel_depth_bfyx_no_pitch() : ConcatenationKernelBase("concatenation_gpu_depth_bfyx_no_pitch") {}
     virtual ~ConcatenationKernel_depth_bfyx_no_pitch() {}
 

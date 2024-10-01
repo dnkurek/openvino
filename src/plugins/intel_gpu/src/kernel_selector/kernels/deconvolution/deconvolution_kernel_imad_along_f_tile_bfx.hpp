@@ -12,6 +12,11 @@ namespace kernel_selector {
 class DeconvolutionKernel_imad_along_f_tile_bfx : public DeconvolutionKernelBase {
 public:
     using Parent = DeconvolutionKernelBase;
+    static DeconvolutionKernel_imad_along_f_tile_bfx& Instance() {
+        static DeconvolutionKernel_imad_along_f_tile_bfx instance_;
+        return instance_;
+    }
+
     DeconvolutionKernel_imad_along_f_tile_bfx() : DeconvolutionKernelBase("deconvolution_gpu_imad_along_f_tile_bfx") {}
     virtual ~DeconvolutionKernel_imad_along_f_tile_bfx() = default;
 

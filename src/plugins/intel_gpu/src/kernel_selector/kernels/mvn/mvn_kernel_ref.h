@@ -12,6 +12,11 @@ namespace kernel_selector {
 class MVNKernelRef : public MVNKernelBase {
 public:
     using Parent = MVNKernelBase;
+    static MVNKernelRef& Instance() {
+        static MVNKernelRef instance_;
+        return instance_;
+    }
+
     MVNKernelRef() : MVNKernelBase("mvn_gpu_ref") {}
     virtual ~MVNKernelRef() {}
 

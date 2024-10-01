@@ -9,6 +9,11 @@
 namespace kernel_selector {
 class OneHotKernelRef : public OneHotKernelBase {
 public:
+    static OneHotKernelRef& Instance() {
+        static OneHotKernelRef instance_;
+        return instance_;
+    }
+
     OneHotKernelRef() : OneHotKernelBase("one_hot_ref") {}
 
     KernelsData GetKernelsData(const Params& params) const override;

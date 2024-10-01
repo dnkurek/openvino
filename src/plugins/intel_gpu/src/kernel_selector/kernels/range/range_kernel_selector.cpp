@@ -3,13 +3,10 @@
 //
 
 #include "range_kernel_selector.h"
-#include "range_kernel_ref.h"
 
 namespace kernel_selector {
 
-range_kernel_selector::range_kernel_selector() {
-    Attach<RangeKernelRef>();
-}
+range_kernel_selector::range_kernel_selector() { }
 
 KernelsData range_kernel_selector::GetBestKernels(const Params& params) const {
     return GetNaiveBestKernel(params, KernelType::RANGE);

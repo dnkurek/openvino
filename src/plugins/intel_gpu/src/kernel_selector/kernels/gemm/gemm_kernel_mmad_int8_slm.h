@@ -24,6 +24,11 @@ public:
         size_t slm_decimation_factor = 2;
     };
 
+    static GemmKernelMMADslmInt8& Instance() {
+        static GemmKernelMMADslmInt8 instance_;
+        return instance_;
+    }
+
     GemmKernelMMADslmInt8() : GemmKernelBase("gemm_mmad_int8_slm") {}
 
     KernelsData GetKernelsData(const Params& params) const override;

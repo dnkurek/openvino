@@ -10,6 +10,11 @@ namespace kernel_selector {
 class RMSKernelBfyxOpt : public RMSKernelBase {
 public:
     using Parent = RMSKernelBase;
+    static RMSKernelBfyxOpt& Instance() {
+        static RMSKernelBfyxOpt instance_;
+        return instance_;
+    }
+
     RMSKernelBfyxOpt() : RMSKernelBase("rms_gpu_bfyx_opt") {}
     virtual ~RMSKernelBfyxOpt() {}
 

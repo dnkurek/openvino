@@ -11,6 +11,11 @@ namespace kernel_selector {
 class LRNKernelWithinChannel : public LRNKernelBase {
 public:
     using Parent = LRNKernelBase;
+    static LRNKernelWithinChannel& Instance() {
+        static LRNKernelWithinChannel instance_;
+        return instance_;
+    }
+
     LRNKernelWithinChannel() : LRNKernelBase("lrn_gpu_within_channel") {}
     virtual ~LRNKernelWithinChannel() {}
 

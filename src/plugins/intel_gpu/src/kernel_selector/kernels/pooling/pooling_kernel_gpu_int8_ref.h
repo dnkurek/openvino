@@ -11,6 +11,11 @@
 namespace kernel_selector {
 class PoolingKernelGPUInt8Ref : public PoolingKernelBase {
 public:
+    static PoolingKernelGPUInt8Ref& Instance() {
+        static PoolingKernelGPUInt8Ref instance_;
+        return instance_;
+    }
+
     PoolingKernelGPUInt8Ref() : PoolingKernelBase("pooling_gpu_int8_ref") {}
     virtual ~PoolingKernelGPUInt8Ref() {}
 

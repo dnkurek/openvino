@@ -9,6 +9,11 @@
 namespace kernel_selector {
 class BroadcastKernelRef : public BroadcastKernelBase {
 public:
+    static BroadcastKernelRef& Instance() {
+        static BroadcastKernelRef instance_;
+        return instance_;
+    }
+
     BroadcastKernelRef() : BroadcastKernelBase("broadcast_gpu_ref") {}
 
     KernelsData GetKernelsData(const Params& params) const override;

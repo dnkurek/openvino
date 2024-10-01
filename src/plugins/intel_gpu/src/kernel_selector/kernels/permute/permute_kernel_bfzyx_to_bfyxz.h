@@ -14,6 +14,11 @@ class PermuteKernel_bfzyx_to_bfyxz : public PermuteKernelBase {
 public:
     using Parent = PermuteKernelBase;
     using Parent::Parent;
+    static PermuteKernel_bfzyx_to_bfyxz& Instance() {
+        static PermuteKernel_bfzyx_to_bfyxz instance_;
+        return instance_;
+    }
+
     PermuteKernel_bfzyx_to_bfyxz() : PermuteKernelBase("permute_bfzyx_to_bfyxz") {}
     virtual ~PermuteKernel_bfzyx_to_bfyxz() {}
 

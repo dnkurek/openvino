@@ -12,6 +12,11 @@ class PermuteKernel_f_y_axes : public PermuteKernelBase {
 public:
     using Parent = PermuteKernelBase;
     using Parent::Parent;
+    static PermuteKernel_f_y_axes& Instance() {
+        static PermuteKernel_f_y_axes instance_;
+        return instance_;
+    }
+
     PermuteKernel_f_y_axes() : PermuteKernelBase("permute_f_y_axes") {}
     ~PermuteKernel_f_y_axes() override = default;
 

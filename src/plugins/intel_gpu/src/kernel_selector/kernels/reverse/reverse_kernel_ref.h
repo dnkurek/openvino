@@ -21,6 +21,11 @@ struct reverse_params : public base_params {
 
 class ReverseKernelRef : public KernelBaseOpenCL {
 public:
+    static ReverseKernelRef& Instance() {
+        static ReverseKernelRef instance_;
+        return instance_;
+    }
+
     ReverseKernelRef() : KernelBaseOpenCL("reverse_ref") {}
 
     virtual ~ReverseKernelRef() {}

@@ -9,6 +9,11 @@
 namespace kernel_selector {
 class ReorderKernel_to_yxfb_batched : public ReorderKernelBase {
 public:
+    static ReorderKernel_to_yxfb_batched& Instance() {
+        static ReorderKernel_to_yxfb_batched instance_;
+        return instance_;
+    }
+
     ReorderKernel_to_yxfb_batched() : ReorderKernelBase("reorder_data_to_yxfb_batched") {}
     ParamsKey GetSupportedKey() const override;
     DeviceFeaturesKey get_required_device_features_key(const Params& params) const override;

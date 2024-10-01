@@ -9,6 +9,11 @@
 namespace kernel_selector {
 class reorder_biplanar_nv12 : public ReorderKernelBase {
 public:
+    static reorder_biplanar_nv12& Instance() {
+        static reorder_biplanar_nv12 instance_;
+        return instance_;
+    }
+
     reorder_biplanar_nv12() : ReorderKernelBase("reorder_biplanar_nv12") {}
     virtual ~reorder_biplanar_nv12() {}
 

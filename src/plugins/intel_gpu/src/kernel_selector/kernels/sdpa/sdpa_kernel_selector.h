@@ -5,6 +5,10 @@
 #pragma once
 
 #include "kernel_selector.h"
+#include "sdpa_kernel_ref.h"
+
+#include "pa_sdpa_kernel_opt.h"
+#include "pa_kv_cache_update_kernel_ref.h"
 
 namespace kernel_selector {
 class sdpa_kernel_selector : public kernel_selector_base {
@@ -12,6 +16,13 @@ public:
     static sdpa_kernel_selector& Instance() {
         static sdpa_kernel_selector instance_;
         return instance_;
+    }
+
+    struct ImplementationList* GetImpls() const override {
+	static KernelBase* list[] = { &SDPAKernelRef::Instance() };
+	static struct ImplementationList impls = { list, 1 };
+
+	return &impls;
     }
 
     sdpa_kernel_selector();
@@ -28,6 +39,13 @@ public:
         return instance_;
     }
 
+    struct ImplementationList* GetImpls() const override {
+	static KernelBase* list[] = { &KVCacheUpdateKernelRef::Instance() };
+	static struct ImplementationList impls = { list, 1 };
+
+	return &impls;
+    }
+
     kv_cache_update_kernel_selector();
 
     virtual ~kv_cache_update_kernel_selector() {}
@@ -40,6 +58,12 @@ public:
     static pa_sdpa_kernel_selector& Instance() {
         static pa_sdpa_kernel_selector instance_;
         return instance_;
+    }
+    struct ImplementationList* GetImpls() const override {
+	static KernelBase* list[] = { &PagedAttentionSDPAKernelOpt::Instance() };
+	static struct ImplementationList impls = { list, 1 };
+
+	return &impls;
     }
 
     pa_sdpa_kernel_selector();

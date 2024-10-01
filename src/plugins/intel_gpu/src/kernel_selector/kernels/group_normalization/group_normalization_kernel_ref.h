@@ -15,6 +15,10 @@ public:
         eNormalize,
         eKernelsNum
     };
+    static GroupNormalizationKernelRef& Instance() {
+        static GroupNormalizationKernelRef instance_;
+        return instance_;
+    }
 
     GroupNormalizationKernelRef() : GroupNormalizationKernelBase{"group_normalization_gpu_ref"} {}
     virtual ~GroupNormalizationKernelRef() {}

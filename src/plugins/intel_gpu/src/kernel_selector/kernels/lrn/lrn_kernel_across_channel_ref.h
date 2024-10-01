@@ -10,6 +10,10 @@ namespace kernel_selector {
 class LRNKernelAcrossChannelRef : public LRNKernelBase {
 public:
     using Parent = LRNKernelBase;
+    static LRNKernelAcrossChannelRef& Instance() {
+        static LRNKernelAcrossChannelRef instance_;
+        return instance_;
+    }
 
     LRNKernelAcrossChannelRef() : Parent("lrn_gpu_across_channel_ref") {}
     virtual ~LRNKernelAcrossChannelRef() {}

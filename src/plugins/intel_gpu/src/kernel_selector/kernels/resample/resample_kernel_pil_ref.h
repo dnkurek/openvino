@@ -17,6 +17,10 @@ public:
         eResampleVertical,
         eEnd
     };
+    static ResampleKernelPilRef& Instance() {
+        static ResampleKernelPilRef instance_;
+        return instance_;
+    }
 
     ResampleKernelPilRef() : ResampleKernelBase(std::string{"resample_pil_ref"}) {}
 

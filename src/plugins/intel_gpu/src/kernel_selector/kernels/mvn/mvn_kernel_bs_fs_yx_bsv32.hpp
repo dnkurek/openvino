@@ -12,6 +12,11 @@ namespace kernel_selector {
 class MVNKernel_bs_fs_yx_bsv32 : public MVNKernelBase {
 public:
     using Parent = MVNKernelBase;
+    static MVNKernel_bs_fs_yx_bsv32& Instance() {
+        static MVNKernel_bs_fs_yx_bsv32 instance_;
+        return instance_;
+    }
+
     MVNKernel_bs_fs_yx_bsv32() : MVNKernelBase("mvn_gpu_b_fs_yx_fsv16_imad") {}
     virtual ~MVNKernel_bs_fs_yx_bsv32() {}
 

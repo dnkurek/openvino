@@ -31,6 +31,10 @@ public:
     using KernelBaseOpenCL::KernelBaseOpenCL;
 
     using DispatchData = CommonDispatchData;
+    static ROIAlignKernelRef& Instance() {
+        static ROIAlignKernelRef instance_;
+        return instance_;
+    }
 
     ROIAlignKernelRef() : KernelBaseOpenCL{"roi_align_ref"} {}
     KernelsData GetKernelsData(const Params& params) const override;

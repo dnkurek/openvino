@@ -2,13 +2,10 @@
 // SPDX-License-Identifier: Apache-2.0
 //
 #include "roi_align_kernel_selector.h"
-#include "roi_align_kernel_ref.h"
 
 namespace kernel_selector {
 
-roi_align_kernel_selector::roi_align_kernel_selector() {
-    Attach<ROIAlignKernelRef>();
-}
+roi_align_kernel_selector::roi_align_kernel_selector() { }
 
 KernelsData roi_align_kernel_selector::GetBestKernels(const Params &params) const {
     return GetNaiveBestKernel(params, KernelType::ROI_ALIGN);

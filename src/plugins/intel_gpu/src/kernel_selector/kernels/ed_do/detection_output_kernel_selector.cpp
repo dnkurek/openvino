@@ -4,18 +4,8 @@
 
 #include "detection_output_kernel_selector.h"
 
-#include "detection_output_kernel_ref.h"
-
 namespace kernel_selector {
-experimental_detectron_detection_output_kernel_selector::experimental_detectron_detection_output_kernel_selector() {
-    Attach<ExperimentalDetectronDetectionOutputKernelRef>();
-}
-
-experimental_detectron_detection_output_kernel_selector&
-experimental_detectron_detection_output_kernel_selector::Instance() {
-    static experimental_detectron_detection_output_kernel_selector instance_;
-    return instance_;
-}
+experimental_detectron_detection_output_kernel_selector::experimental_detectron_detection_output_kernel_selector() { }
 
 KernelsData experimental_detectron_detection_output_kernel_selector::GetBestKernels(
     const Params& params) const {

@@ -14,25 +14,30 @@
 namespace kernel_selector {
 class KernelBase;
 
-using KernelList = std::vector<std::shared_ptr<KernelBase>>;
 using ForceList = std::map<std::string, bool>;
+
+    struct ImplementationList {
+	KernelBase **ptr;
+	int len;
+    };
 
 class kernel_selector_base {
 public:
+
     kernel_selector_base();
     virtual ~kernel_selector_base() {}
 
     KernelData get_best_kernel(const Params& params) const;
-    std::shared_ptr<KernelBase> GetImplementation(std::string& kernel_name) const;
+    KernelBase* GetImplementation(std::string& kernel_name) const;
 
 protected:
     template <typename T>
     inline void Attach() {
-        implementations.push_back(std::make_shared<T>());
+        //implementations.push_back(T::Instance());
     }
     virtual KernelsData GetBestKernels(const Params& params) const = 0;
 
-    KernelsData GetNaiveBestKernel(const KernelList& all_impls,
+    KernelsData GetNaiveBestKernel(const struct ImplementationList* all_impls,
                                    const Params& params) const;
 
     KernelsData GetNaiveBestKernel(const Params& params,
@@ -41,9 +46,10 @@ protected:
     KernelsData GetAutoTuneBestKernel(const Params& params,
                                       KernelType kType) const;
 
-    KernelList GetAllImplementations(const Params& params, KernelType kType) const;
+    struct ImplementationList* GetAllImplementations(const Params& params, KernelType kType) const;
 
-    KernelList implementations;
+    virtual struct ImplementationList* GetImpls() const = 0;
+
     ForceList forceKernels;
 
     static AutoTuner autoTuner;

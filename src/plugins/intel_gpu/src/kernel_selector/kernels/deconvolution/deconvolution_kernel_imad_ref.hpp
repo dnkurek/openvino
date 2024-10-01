@@ -12,6 +12,11 @@ namespace kernel_selector {
 class DeconvolutionKernel_imad_ref : public DeconvolutionKernelBase {
 public:
     using Parent = DeconvolutionKernelBase;
+    static DeconvolutionKernel_imad_ref& Instance() {
+        static DeconvolutionKernel_imad_ref instance_;
+        return instance_;
+    }
+
     DeconvolutionKernel_imad_ref() : DeconvolutionKernelBase("deconvolution_gpu_imad_ref") {}
     virtual ~DeconvolutionKernel_imad_ref() = default;
 

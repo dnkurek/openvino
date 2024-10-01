@@ -18,6 +18,11 @@ struct scatter_update_params : public base_params {
 
 class ScatterUpdateKernelRef : public KernelBaseOpenCL {
 public:
+    static ScatterUpdateKernelRef& Instance() {
+        static ScatterUpdateKernelRef instance_;
+        return instance_;
+    }
+
     ScatterUpdateKernelRef() : KernelBaseOpenCL("scatter_update_ref") {}
     virtual ~ScatterUpdateKernelRef() {}
     virtual JitConstants GetJitConstants(const scatter_update_params& params) const;

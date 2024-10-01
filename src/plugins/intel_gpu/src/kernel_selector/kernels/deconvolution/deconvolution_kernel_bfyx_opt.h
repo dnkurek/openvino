@@ -11,6 +11,11 @@ namespace kernel_selector {
 class DeconvolutionKernel_bfyx_opt : public DeconvolutionKernelBase {
 public:
     using Parent = DeconvolutionKernelBase;
+    static DeconvolutionKernel_bfyx_opt& Instance() {
+        static DeconvolutionKernel_bfyx_opt instance_;
+        return instance_;
+    }
+
     DeconvolutionKernel_bfyx_opt() : DeconvolutionKernelBase("deconvolution_gpu_bfyx_opt") {}
     virtual ~DeconvolutionKernel_bfyx_opt() {}
 

@@ -49,6 +49,11 @@ struct strided_slice_params : public base_params {
 
 class StridedSliceKernelRef : public KernelBaseOpenCL {
 public:
+    static StridedSliceKernelRef& Instance() {
+        static StridedSliceKernelRef instance_;
+        return instance_;
+    }
+
     StridedSliceKernelRef() : KernelBaseOpenCL("strided_slice_ref") {}
     virtual ~StridedSliceKernelRef() {}
     virtual JitConstants GetJitConstants(const strided_slice_params& params) const;

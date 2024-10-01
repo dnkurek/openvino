@@ -10,6 +10,11 @@ namespace kernel_selector {
 
 class ConcatenationKernel_fs_b_yx_fsv32 : public ConcatenationKernelBase {
 public:
+    static ConcatenationKernel_fs_b_yx_fsv32& Instance() {
+        static ConcatenationKernel_fs_b_yx_fsv32 instance_;
+        return instance_;
+    }
+
     ConcatenationKernel_fs_b_yx_fsv32() : ConcatenationKernelBase("concatenation_gpu_fs_b_yx_fsv32") {}
     virtual ~ConcatenationKernel_fs_b_yx_fsv32() {}
 

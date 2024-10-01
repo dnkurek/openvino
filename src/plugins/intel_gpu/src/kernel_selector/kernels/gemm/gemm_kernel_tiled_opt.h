@@ -19,6 +19,11 @@ public:
         size_t tile_n_size = 8;
     };
 
+    static GemmKernelTiledOpt& Instance() {
+        static GemmKernelTiledOpt instance_;
+        return instance_;
+    }
+
     GemmKernelTiledOpt() : GemmKernelBase("gemm_tiled_opt") {}
 
     KernelsData GetKernelsData(const Params& params) const override;

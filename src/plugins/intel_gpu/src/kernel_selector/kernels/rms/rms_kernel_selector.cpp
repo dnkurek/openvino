@@ -3,14 +3,9 @@
 //
 
 #include "rms_kernel_selector.h"
-#include "rms_kernel_ref.h"
-#include "rms_kernel_bfyx_opt.h"
 
 namespace kernel_selector {
-rms_kernel_selector::rms_kernel_selector() {
-    Attach<RMSKernelRef>();
-    Attach<RMSKernelBfyxOpt>();
-}
+rms_kernel_selector::rms_kernel_selector() { }
 
 KernelsData rms_kernel_selector::GetBestKernels(const Params& params) const {
     return GetNaiveBestKernel(params, KernelType::RMS);

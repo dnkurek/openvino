@@ -9,6 +9,11 @@
 namespace kernel_selector {
 class ReorderKernelRef : public ReorderKernelBase {
 public:
+    static ReorderKernelRef& Instance() {
+        static ReorderKernelRef instance_;
+        return instance_;
+    }
+
     ReorderKernelRef() : ReorderKernelBase("reorder_data") {}
     virtual ~ReorderKernelRef() {}
 

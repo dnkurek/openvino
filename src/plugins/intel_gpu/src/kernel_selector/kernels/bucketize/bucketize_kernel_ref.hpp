@@ -20,6 +20,11 @@ struct bucketize_params : base_params {
  */
 class BucketizeKernelRef : public KernelBaseOpenCL {
 public:
+    static BucketizeKernelRef& Instance() {
+        static BucketizeKernelRef instance_;
+        return instance_;
+    }
+
     BucketizeKernelRef() : KernelBaseOpenCL{"bucketize_ref"} {}
 
 private:

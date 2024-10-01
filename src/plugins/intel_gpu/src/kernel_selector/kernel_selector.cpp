@@ -72,25 +72,25 @@ KernelData kernel_selector_base::get_best_kernel(const Params& params) const {
 }
 
 
-KernelsData kernel_selector_base::GetNaiveBestKernel(const KernelList& all_impls, const Params& params) const {
+KernelsData kernel_selector_base::GetNaiveBestKernel(const struct ImplementationList* all_impls, const Params& params) const {
     KernelsData kernelsData;
     std::string kernelName;
 
-    for (const auto& implementation : all_impls) {
+    for (int i = 0; i < all_impls->len; i++) {
         // TODO: Unify this check with the Validate virtual method. Make
         // sure that the method is called here only, not in all the
         // GetKernelsData implementations.
         try {
-            KernelsData kds = implementation->GetKernelsData(params);
+            KernelsData kds = all_impls->ptr[i]->GetKernelsData(params);
 
             if (kds.size() && kds[0].kernels.size()) {
                 kernelsData = kds;
-                kernelName = implementation->GetName();
+                kernelName = all_impls->ptr[i]->GetName();
                 break;
             }
         } catch (std::runtime_error& ex) {
             // we have to handle it in order to avoid exception in KernelSelector as much we can
-            kernelName = (implementation != nullptr)? implementation->GetName() : "[impl is null]";
+            kernelName = (all_impls->ptr[i] != nullptr)? all_impls->ptr[i]->GetName() : "[impl is null]";
             GPU_DEBUG_TRACE << "layerID: " << params.layerID << " kernel: " << kernelName << " - " << ex.what() << std::endl;
         }
     }
@@ -111,7 +111,7 @@ KernelsData kernel_selector_base::GetAutoTuneBestKernel(const Params& params, Ke
     KernelsData kernelsData;
     std::string kernelName;
 
-    auto allImplementations = GetAllImplementations(params, kType);
+    struct ImplementationList* allImplementations = GetAllImplementations(params, kType);
     auto kernel_params = static_cast<const base_params&>(params);
     bool int8_kernel = kernel_params.inputs[0].GetDType() == Datatype::INT8 || kernel_params.inputs[0].GetDType() == Datatype::UINT8;
     std::tuple<std::string, int> cachedKernelConfig;
@@ -124,10 +124,10 @@ KernelsData kernel_selector_base::GetAutoTuneBestKernel(const Params& params, Ke
         std::string cachedkernelName = std::get<0>(cachedKernelConfig);
         int autoTuneIndex = std::get<1>(cachedKernelConfig);
 
-        for (const auto& implementation : allImplementations) {
+        for (int i = 0; i < allImplementations->len; i++) {
             // TODO: make sure kernel names are unique.
-            if (implementation->GetName().compare(cachedkernelName) == 0) {
-                KernelsData kds = implementation->GetTunedKernelsDataByIndex(params, autoTuneIndex);
+            if (allImplementations->ptr[i]->GetName().compare(cachedkernelName) == 0) {
+                KernelsData kds = allImplementations->ptr[i]->GetTunedKernelsDataByIndex(params, autoTuneIndex);
                 if (kds.size() && kds[0].kernels.size()) {
                     kernelsData = kds;
                     kernelsData[0].kernelName = cachedkernelName;
@@ -145,54 +145,18 @@ KernelsData kernel_selector_base::GetAutoTuneBestKernel(const Params& params, Ke
     return GetNaiveBestKernel(allImplementations, params);
 }
 
-std::shared_ptr<KernelBase> kernel_selector_base::GetImplementation(std::string& kernel_name) const {
-    for (auto& impl : implementations) {
-        if (impl->GetName().compare(kernel_name) == 0)
-            return impl;
+KernelBase* kernel_selector_base::GetImplementation(std::string& kernel_name) const {
+    struct ImplementationList* impls = GetImpls();
+    for (int i = 0; i < impls->len; i++) {
+        if (impls->ptr[i]->GetName().compare(kernel_name) == 0)
+            return impls->ptr[i];
     }
     return nullptr;
 }
 
-KernelList kernel_selector_base::GetAllImplementations(const Params& params, KernelType kType) const {
-    using PriorityPair = std::pair<KernelsPriority, std::shared_ptr<KernelBase>>;
-    auto comparePriority = [](const PriorityPair& firstImpl, const PriorityPair& secondImpl) {
-        return firstImpl.first < secondImpl.first;
-    };
-
-    std::multiset<PriorityPair, decltype(comparePriority)> sortedImpls(comparePriority);
-    KernelList result;
-
-    auto device_features_key = params.engineInfo.get_supported_device_features_key();
-
-    if (params.GetType() == kType) {
-        ParamsKey requireKey = params.GetParamsKey();
-        bool forceImplementation = !params.forceImplementation.empty();
-        for (auto& impl : implementations) {
-            const ParamsKey implKey = impl->GetSupportedKey();
-            if (!implKey.Support(requireKey))
-                continue;
-
-            auto required_device_features_key = impl->get_required_device_features_key(params);
-            if (!device_features_key.supports(required_device_features_key))
-                continue;
-
-            if (forceImplementation && params.forceImplementation != impl->GetName())
-                continue;
-            sortedImpls.emplace(impl->GetKernelsPriority(params), impl);
-        }
-
-        std::transform(
-            sortedImpls.begin(),
-            sortedImpls.end(),
-            std::back_inserter(result),
-            [](const PriorityPair& impl) {
-                return std::move(impl.second);
-            });
-    } else {
-        GPU_DEBUG_COUT << "No implementation for " << params.layerID << " because of kernel type mismatch" << std::endl;
-    }
-
-    return result;
+struct ImplementationList* kernel_selector_base::GetAllImplementations(const Params& params, KernelType kType) const {
+	struct ImplementationList* impls = GetImpls();
+	return impls;
 }
 
 }  // namespace kernel_selector

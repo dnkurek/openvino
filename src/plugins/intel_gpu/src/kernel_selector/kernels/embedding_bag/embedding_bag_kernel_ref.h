@@ -23,6 +23,11 @@ struct embedding_bag_params : public base_params {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 class EmbeddingBagKernelRef : public KernelBaseOpenCL {
 public:
+    static EmbeddingBagKernelRef& Instance() {
+        static EmbeddingBagKernelRef instance_;
+        return instance_;
+    }
+
     EmbeddingBagKernelRef() : KernelBaseOpenCL("embedding_bag_ref") {}
     virtual ~EmbeddingBagKernelRef() = default;
 

@@ -129,13 +129,13 @@ public:
         (_kernel_data.update_dispatch_data_func)(*_kernel_data.params, _kernel_data);
     }
 
-    static std::unique_ptr<primitive_impl> create(const reorder_node& arg, const kernel_impl_params& impl_param) {
+    static std::unique_ptr<primitive_impl> create(const reorder_node& arg, const kernel_impl_params& impl_param, kernel_selector::reorder_kernel_selector kernel_selector) {
         bool is_reorder_weights = format::is_weights_format(impl_param.get_input_layout().format) ||
                                   format::is_weights_format(impl_param.get_output_layout().format);
         if (is_reorder_weights) {
             return create_reorder_weights(impl_param);
         } else {
-            return typed_primitive_impl_ocl<reorder>::create<reorder_impl>(arg, impl_param);
+            return typed_primitive_impl_ocl<reorder>::create2<reorder_impl>(arg, impl_param, kernel_selector);
         }
     }
 
@@ -166,7 +166,7 @@ public:
 
 std::unique_ptr<primitive_impl> ReorderImplementationManager::create_impl(const program_node& node, const kernel_impl_params& params) const {
     assert(node.is_type<reorder>());
-    return ocl::reorder_impl::create(static_cast<const reorder_node&>(node), params);
+    return ocl::reorder_impl::create(static_cast<const reorder_node&>(node), params, kernel_selector);
 }
 
 std::unique_ptr<primitive_impl> ReorderImplementationManager::create_impl(const kernel_impl_params& params) const {

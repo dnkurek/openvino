@@ -9,6 +9,10 @@ namespace kernel_selector {
 class GroupNormalizationKernel_b_fs_yx_fsv16 : public GroupNormalizationKernelBase {
 public:
     using Parent = GroupNormalizationKernelBase;
+    static GroupNormalizationKernel_b_fs_yx_fsv16& Instance() {
+        static GroupNormalizationKernel_b_fs_yx_fsv16 instance_;
+        return instance_;
+    }
 
     GroupNormalizationKernel_b_fs_yx_fsv16() : GroupNormalizationKernelBase{"group_normalization_gpu_b_fs_yx_fsv16"} {}
     virtual ~GroupNormalizationKernel_b_fs_yx_fsv16() {}

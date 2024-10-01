@@ -10,6 +10,11 @@
 namespace kernel_selector {
 class ReduceKernel_b_fs_yx_fsv16 : public ReduceKernelBase {
 public:
+    static ReduceKernel_b_fs_yx_fsv16& Instance() {
+        static ReduceKernel_b_fs_yx_fsv16 instance_;
+        return instance_;
+    }
+
     ReduceKernel_b_fs_yx_fsv16() : ReduceKernelBase("reduce_gpu_b_fs_yx_fsv16") {}
     virtual ~ReduceKernel_b_fs_yx_fsv16() {}
     CommonDispatchData SetDefault(const reduce_params& params) const override;

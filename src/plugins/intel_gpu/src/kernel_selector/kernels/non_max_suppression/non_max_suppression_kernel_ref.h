@@ -62,6 +62,11 @@ struct non_max_suppression_params : public base_params {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 class NonMaxSuppressionKernelRef : public KernelBaseOpenCL {
 public:
+    static NonMaxSuppressionKernelRef& Instance() {
+        static NonMaxSuppressionKernelRef instance_;
+        return instance_;
+    }
+
     NonMaxSuppressionKernelRef() : KernelBaseOpenCL("non_max_suppression_gpu_ref") {}
 
     using DispatchData = CommonDispatchData;

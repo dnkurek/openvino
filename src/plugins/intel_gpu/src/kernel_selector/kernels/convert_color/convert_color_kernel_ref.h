@@ -10,6 +10,12 @@ namespace kernel_selector {
 class ConvertColorKernelRef : public ConvertColorKernelBase {
 public:
     using Parent = ConvertColorKernelBase;
+
+    static ConvertColorKernelRef& Instance() {
+        static ConvertColorKernelRef instance_;
+        return instance_;
+    }
+
     ConvertColorKernelRef() : ConvertColorKernelBase("convert_color_ref") {}
     virtual ~ConvertColorKernelRef() {}
 

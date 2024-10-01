@@ -5,6 +5,7 @@
 #pragma once
 
 #include "kernel_selector.h"
+#include "border_kernel_ref.h"
 
 namespace kernel_selector {
 class border_kernel_selector : public kernel_selector_base {
@@ -12,6 +13,13 @@ public:
     static border_kernel_selector& Instance() {
         static border_kernel_selector instance;
         return instance;
+    }
+
+    struct ImplementationList* GetImpls() const override {
+	static KernelBase* list[] = { &BorderKernelRef::Instance() };
+	static struct ImplementationList impls = { list, 1 };
+
+	return &impls;
     }
 
     border_kernel_selector();

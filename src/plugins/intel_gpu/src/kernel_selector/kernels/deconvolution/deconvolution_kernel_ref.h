@@ -10,6 +10,11 @@ namespace kernel_selector {
 
 class DeconvolutionKernelRef : public DeconvolutionKernelBase {
 public:
+    static DeconvolutionKernelRef& Instance() {
+        static DeconvolutionKernelRef instance_;
+        return instance_;
+    }
+
     DeconvolutionKernelRef() : DeconvolutionKernelBase("deconvolution_gpu_ref") {}
     virtual ~DeconvolutionKernelRef() {}
 

@@ -22,6 +22,11 @@ struct slice_params: public base_params {
 
 class SliceKernelRef: public KernelBaseOpenCL {
 public:
+    static SliceKernelRef& Instance() {
+        static SliceKernelRef instance_;
+        return instance_;
+    }
+
     SliceKernelRef() :
             KernelBaseOpenCL { "slice_ref" } {
     }

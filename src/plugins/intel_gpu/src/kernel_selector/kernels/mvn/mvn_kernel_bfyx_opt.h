@@ -11,6 +11,11 @@
 namespace kernel_selector {
 class MVNKernelBfyxOpt : public MVNKernelBase {
 public:
+    static MVNKernelBfyxOpt& Instance() {
+        static MVNKernelBfyxOpt instance_;
+        return instance_;
+    }
+
     MVNKernelBfyxOpt() : MVNKernelBase("mvn_gpu_bfyx_opt") {}
     virtual ~MVNKernelBfyxOpt() {}
 

@@ -9,6 +9,11 @@
 namespace kernel_selector {
 class LSTMEltKernelRef : public LSTMEltKernelBase {
 public:
+    static LSTMEltKernelRef& Instance() {
+        static LSTMEltKernelRef instance_;
+        return instance_;
+    }
+
     LSTMEltKernelRef() : LSTMEltKernelBase("lstm_elt_gpu_bfyx_ref") {}
     virtual ~LSTMEltKernelRef() {}
 

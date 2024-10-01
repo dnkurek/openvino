@@ -11,6 +11,11 @@ namespace kernel_selector {
 class GemmKernelRef : public GemmKernelBase {
 public:
     using Parent = GemmKernelBase;
+    static GemmKernelRef& Instance() {
+        static GemmKernelRef instance_;
+        return instance_;
+    }
+
     GemmKernelRef() : GemmKernelBase("gemm_ref") {}
 
     KernelsData GetKernelsData(const Params& params) const override;

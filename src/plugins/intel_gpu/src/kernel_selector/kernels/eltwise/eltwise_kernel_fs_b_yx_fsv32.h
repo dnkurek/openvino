@@ -14,6 +14,11 @@
 namespace kernel_selector {
 class EltwiseKernel_fs_b_yx_fsv32 : public EltwiseKernelBase {
 public:
+    static EltwiseKernel_fs_b_yx_fsv32& Instance() {
+        static EltwiseKernel_fs_b_yx_fsv32 instance_;
+        return instance_;
+    }
+
     EltwiseKernel_fs_b_yx_fsv32() : EltwiseKernelBase("eltwise_fs_b_yx_fsv32") {}
     virtual ~EltwiseKernel_fs_b_yx_fsv32() {}
 

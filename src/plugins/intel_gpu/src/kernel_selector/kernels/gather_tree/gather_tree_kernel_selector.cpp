@@ -3,10 +3,9 @@
 //
 
 #include "gather_tree_kernel_selector.h"
-#include "gather_tree_kernel_ref.h"
 
 namespace kernel_selector {
-    gather_tree_kernel_selector::gather_tree_kernel_selector() { Attach<GatherTreeKernelRef>(); }
+    gather_tree_kernel_selector::gather_tree_kernel_selector() { }
 
     KernelsData gather_tree_kernel_selector::GetBestKernels(const Params& params) const {
         return GetNaiveBestKernel(params, KernelType::GATHER_TREE);

@@ -11,6 +11,10 @@ namespace kernel_selector {
 class QuantizeKernelRef : public QuantizeKernelBase {
 public:
     using Parent = QuantizeKernelBase;
+    static QuantizeKernelRef& Instance() {
+        static QuantizeKernelRef instance_;
+        return instance_;
+    }
 
     QuantizeKernelRef() : QuantizeKernelBase("quantize_gpu_ref") {}
     virtual ~QuantizeKernelRef() {}

@@ -15,6 +15,11 @@ class PermuteKernelRef : public PermuteKernelBase {
 public:
     using Parent = PermuteKernelBase;
     using Parent::Parent;
+    static PermuteKernelRef& Instance() {
+        static PermuteKernelRef instance_;
+        return instance_;
+    }
+
     PermuteKernelRef() : PermuteKernelBase("permute_ref") {}
     virtual ~PermuteKernelRef() {}
 

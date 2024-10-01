@@ -22,6 +22,11 @@ struct generate_proposals_params : public base_params {
 
 class GenerateProposalsRef : public KernelBaseOpenCL {
 public:
+    static GenerateProposalsRef& Instance() {
+        static GenerateProposalsRef instance_;
+        return instance_;
+    }
+
     GenerateProposalsRef()
             : KernelBaseOpenCL("generate_proposals_ref") {}
 

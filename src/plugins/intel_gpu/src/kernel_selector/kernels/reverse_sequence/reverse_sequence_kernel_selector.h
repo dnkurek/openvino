@@ -5,6 +5,7 @@
 #pragma once
 
 #include "kernel_selector.h"
+#include "reverse_sequence_kernel_ref.h"
 
 namespace kernel_selector {
 class reverse_sequence_kernel_selector : public kernel_selector_base {
@@ -12,6 +13,13 @@ public:
     static reverse_sequence_kernel_selector& Instance() {
         static reverse_sequence_kernel_selector instance_;
         return instance_;
+    }
+
+    struct ImplementationList* GetImpls() const override {
+	static KernelBase* list[] = { &ReverseSequenceKernelRef::Instance() };
+	static struct ImplementationList impls = { list, 1 };
+
+	return &impls;
     }
 
     reverse_sequence_kernel_selector();

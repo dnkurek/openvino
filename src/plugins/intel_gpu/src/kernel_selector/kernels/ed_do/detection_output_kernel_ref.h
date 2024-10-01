@@ -23,6 +23,11 @@ struct experimental_detectron_detection_output_params : public base_params {
 
 class ExperimentalDetectronDetectionOutputKernelRef : public KernelBaseOpenCL {
 public:
+    static ExperimentalDetectronDetectionOutputKernelRef& Instance() {
+        static ExperimentalDetectronDetectionOutputKernelRef instance_;
+        return instance_;
+    }
+
     ExperimentalDetectronDetectionOutputKernelRef() : KernelBaseOpenCL("experimental_detectron_detection_output_ref") {}
 
     ~ExperimentalDetectronDetectionOutputKernelRef() = default;

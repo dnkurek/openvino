@@ -10,6 +10,11 @@ namespace kernel_selector {
 class SoftmaxKernel_fb : public SoftmaxKernelBaseBF {
 public:
     using Parent = SoftmaxKernelBaseBF;
+    static SoftmaxKernel_fb& Instance() {
+        static SoftmaxKernel_fb instance_;
+        return instance_;
+    }
+
     SoftmaxKernel_fb() : SoftmaxKernelBaseBF("softmax_gpu_fb") {}
     virtual ~SoftmaxKernel_fb() {}
 

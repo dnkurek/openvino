@@ -20,6 +20,11 @@ struct reverse_sequence_params : public base_params {
 
 class ReverseSequenceKernelRef : public KernelBaseOpenCL {
 public:
+    static ReverseSequenceKernelRef& Instance() {
+        static ReverseSequenceKernelRef instance_;
+        return instance_;
+    }
+
     ReverseSequenceKernelRef() : KernelBaseOpenCL("reverse_sequence_ref") {}
     virtual ~ReverseSequenceKernelRef() {}
     virtual JitConstants GetJitConstants(const reverse_sequence_params& params) const;

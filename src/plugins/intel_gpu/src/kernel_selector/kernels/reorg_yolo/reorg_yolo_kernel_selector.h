@@ -5,6 +5,7 @@
 #pragma once
 
 #include "kernel_selector.h"
+#include "reorg_yolo_kernel_ref.h"
 
 namespace kernel_selector {
 class reorg_yolo_kernel_selector : public kernel_selector_base {
@@ -12,6 +13,13 @@ public:
     static reorg_yolo_kernel_selector& Instance() {
         static reorg_yolo_kernel_selector instance_;
         return instance_;
+    }
+
+    struct ImplementationList* GetImpls() const override {
+	static KernelBase* list[] = { &ReorgYoloKernelRef::Instance() };
+	static struct ImplementationList impls = { list, 1 };
+
+	return &impls;
     }
 
     reorg_yolo_kernel_selector();

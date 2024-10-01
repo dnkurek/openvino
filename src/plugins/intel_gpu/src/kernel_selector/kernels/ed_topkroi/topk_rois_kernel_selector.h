@@ -5,6 +5,7 @@
 #pragma once
 
 #include "kernel_selector.h"
+#include "topk_rois_ref.h"
 
 namespace kernel_selector {
 
@@ -13,7 +14,17 @@ namespace kernel_selector {
  */
 class experimental_detectron_topk_rois_kernel_selector : public kernel_selector_base {
 public:
-    static experimental_detectron_topk_rois_kernel_selector &Instance();
+    static experimental_detectron_topk_rois_kernel_selector& Instance() {
+        static experimental_detectron_topk_rois_kernel_selector instance_;
+        return instance_;
+    }
+
+    struct ImplementationList* GetImpls() const override {
+	static KernelBase* list[] = { &ExperimentalDetectronTopKROIRef::Instance() };
+	static struct ImplementationList impls = { list, 2 };
+
+	return &impls;
+    }
 
     experimental_detectron_topk_rois_kernel_selector();
 

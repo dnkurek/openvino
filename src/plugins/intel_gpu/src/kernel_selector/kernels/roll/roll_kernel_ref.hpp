@@ -14,6 +14,11 @@ struct roll_params : base_params {
 
 class RollKernelRef : public KernelBaseOpenCL {
 public:
+    static RollKernelRef& Instance() {
+        static RollKernelRef instance_;
+        return instance_;
+    }
+
     RollKernelRef() : KernelBaseOpenCL{"roll_ref"} {}
     KernelsData GetKernelsData(const Params& params) const override;
     ParamsKey GetSupportedKey() const override;

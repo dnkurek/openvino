@@ -22,6 +22,11 @@ public:
         size_t pack_size = 4;
     };
 
+    static GemmKernelMMADint8& Instance() {
+        static GemmKernelMMADint8 instance_;
+        return instance_;
+    }
+
     GemmKernelMMADint8() : GemmKernelBase("gemm_mmad_int8") {}
 
     KernelsData GetKernelsData(const Params& params) const override;

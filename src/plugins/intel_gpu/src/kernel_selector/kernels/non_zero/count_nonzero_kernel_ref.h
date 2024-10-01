@@ -17,6 +17,11 @@ struct count_nonzero_params : public base_params {
 
 class CountNonzeroKernelRef : public KernelBaseOpenCL {
 public:
+    static CountNonzeroKernelRef& Instance() {
+        static CountNonzeroKernelRef instance_;
+        return instance_;
+    }
+
     CountNonzeroKernelRef() : KernelBaseOpenCL("count_nonzero_ref") {}
     virtual ~CountNonzeroKernelRef() {}
 

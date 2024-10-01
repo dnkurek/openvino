@@ -3,14 +3,9 @@
 //
 
 #include "dynamic_quantize_kernel_selector.h"
-#include "dynamic_quantize_kernel_ref.h"
-#include "dynamic_quantize_kernel_opt.h"
 
 namespace kernel_selector {
-dynamic_quantize_kernel_selector::dynamic_quantize_kernel_selector() {
-    Attach<DynamicQuantizeKernelRef>();
-    Attach<DynamicQuantizeKernelOpt>();
-}
+dynamic_quantize_kernel_selector::dynamic_quantize_kernel_selector() { }
 
 KernelsData dynamic_quantize_kernel_selector::GetBestKernels(const Params& params) const {
     return GetNaiveBestKernel(params, KernelType::DYNAMIC_QUANTIZE);

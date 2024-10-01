@@ -18,6 +18,11 @@ struct gather_elements_params : public base_params {
 
 class GatherElementsKernelRef : public KernelBaseOpenCL {
 public:
+    static GatherElementsKernelRef& Instance() {
+        static GatherElementsKernelRef instance_;
+        return instance_;
+    }
+
     GatherElementsKernelRef() : KernelBaseOpenCL("gather_elements_ref") {}
     virtual ~GatherElementsKernelRef() {}
     virtual JitConstants GetJitConstants(const gather_elements_params& params) const;

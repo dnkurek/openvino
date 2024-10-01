@@ -9,6 +9,11 @@
 namespace kernel_selector {
 class EltwiseKernel_vload8 : public EltwiseKernelBase {
 public:
+    static EltwiseKernel_vload8& Instance() {
+        static EltwiseKernel_vload8 instance_;
+        return instance_;
+    }
+
     EltwiseKernel_vload8() : EltwiseKernelBase("eltwise_simple_vload8") {}
     virtual ~EltwiseKernel_vload8() {}
 

@@ -54,6 +54,11 @@ struct detection_output_params : public base_params {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 class DetectionOutputKernelRef: public KernelBaseOpenCL {
 public:
+    static DetectionOutputKernelRef& Instance() {
+        static DetectionOutputKernelRef instance_;
+        return instance_;
+    }
+
     DetectionOutputKernelRef() : KernelBaseOpenCL("detection_output_gpu_ref") {}
 
     using DispatchData = CommonDispatchData;

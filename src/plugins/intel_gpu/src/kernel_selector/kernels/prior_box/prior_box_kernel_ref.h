@@ -44,6 +44,11 @@ struct prior_box_params : public base_params {
  */
 class PriorBoxKernelRef : public KernelBaseOpenCL {
 public:
+    static PriorBoxKernelRef& Instance() {
+        static PriorBoxKernelRef instance_;
+        return instance_;
+    }
+
     PriorBoxKernelRef() : KernelBaseOpenCL{"prior_box_ref"} {}
 
 private:

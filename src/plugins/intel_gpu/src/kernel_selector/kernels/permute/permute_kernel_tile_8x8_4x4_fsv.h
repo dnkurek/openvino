@@ -14,6 +14,11 @@ class PermuteKernel_tile_8x8_4x4_fsv : public PermuteKernelBase {
 public:
     using Parent = PermuteKernelBase;
     using Parent::Parent;
+    static PermuteKernel_tile_8x8_4x4_fsv& Instance() {
+        static PermuteKernel_tile_8x8_4x4_fsv instance_;
+        return instance_;
+    }
+
     PermuteKernel_tile_8x8_4x4_fsv() : PermuteKernelBase("permute_tile_8x8_4x4_fsv") {}
     virtual ~PermuteKernel_tile_8x8_4x4_fsv() {}
 

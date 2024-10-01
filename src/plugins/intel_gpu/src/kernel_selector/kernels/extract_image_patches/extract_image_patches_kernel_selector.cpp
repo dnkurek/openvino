@@ -3,12 +3,9 @@
 //
 
 #include "extract_image_patches_kernel_selector.h"
-#include "extract_image_patches_kernel_ref.h"
 
 namespace kernel_selector {
-extract_image_patches_kernel_selector::extract_image_patches_kernel_selector() {
-    Attach<ExtractImagePatchesKernelRef>();
-}
+extract_image_patches_kernel_selector::extract_image_patches_kernel_selector() { }
 
 KernelsData extract_image_patches_kernel_selector::GetBestKernels(const Params& params) const {
     return GetNaiveBestKernel(params, KernelType::EXTRACT_IMAGE_PATCHES);

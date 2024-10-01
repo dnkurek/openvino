@@ -5,6 +5,7 @@
 #pragma once
 
 #include <kernel_selector.h>
+#include "eye_kernel_ref.h"
 
 namespace kernel_selector {
 
@@ -13,6 +14,13 @@ public:
     static eye_kernel_selector& Instance() {
         static eye_kernel_selector instance_;
         return instance_;
+    }
+
+    struct ImplementationList* GetImpls() const override {
+	static KernelBase* list[] = { &EyeKernelRef::Instance() };
+	static struct ImplementationList impls = { list, 1 };
+
+	return &impls;
     }
 
     eye_kernel_selector();

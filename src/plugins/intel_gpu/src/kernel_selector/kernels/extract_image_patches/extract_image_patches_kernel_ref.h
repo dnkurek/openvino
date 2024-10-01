@@ -9,6 +9,11 @@
 namespace kernel_selector {
 class ExtractImagePatchesKernelRef : public ExtractImagePatchesKernelBase {
 public:
+    static ExtractImagePatchesKernelRef& Instance() {
+        static ExtractImagePatchesKernelRef instance_;
+        return instance_;
+    }
+
     ExtractImagePatchesKernelRef() : ExtractImagePatchesKernelBase("extract_image_patches_ref") {}
     virtual ~ExtractImagePatchesKernelRef() = default;
 protected:

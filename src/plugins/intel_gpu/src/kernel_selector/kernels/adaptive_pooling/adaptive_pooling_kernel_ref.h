@@ -17,6 +17,12 @@ struct adaptive_pooling_params : public base_params {
 
 class AdaptivePoolingRef : public KernelBaseOpenCL {
 public:
+
+    static AdaptivePoolingRef& Instance() {
+        static AdaptivePoolingRef instance_;
+        return instance_;
+    }
+
     AdaptivePoolingRef() : KernelBaseOpenCL("adaptive_pooling_gpu_ref") {}
     ~AdaptivePoolingRef() = default;
 

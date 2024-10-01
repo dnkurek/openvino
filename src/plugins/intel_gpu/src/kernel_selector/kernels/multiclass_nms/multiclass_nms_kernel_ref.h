@@ -26,6 +26,11 @@ struct multiclass_nms_params : public base_params {
 
 class MulticlassNmsKernelRef : public KernelBaseOpenCL {
 public:
+    static MulticlassNmsKernelRef& Instance() {
+        static MulticlassNmsKernelRef instance_;
+        return instance_;
+    }
+
     MulticlassNmsKernelRef() : KernelBaseOpenCL("multiclass_nms_ref") {}
 
     ~MulticlassNmsKernelRef() = default;

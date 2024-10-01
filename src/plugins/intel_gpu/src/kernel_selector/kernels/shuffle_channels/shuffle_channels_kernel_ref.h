@@ -19,6 +19,11 @@ struct shuffle_channels_params : public base_params {
 
 class ShuffleChannelsKernelRef : public KernelBaseOpenCL {
 public:
+    static ShuffleChannelsKernelRef& Instance() {
+        static ShuffleChannelsKernelRef instance_;
+        return instance_;
+    }
+
     ShuffleChannelsKernelRef() : KernelBaseOpenCL("shuffle_channels_ref") {}
     virtual ~ShuffleChannelsKernelRef() {}
     KernelsData GetKernelsData(const Params& params) const override;

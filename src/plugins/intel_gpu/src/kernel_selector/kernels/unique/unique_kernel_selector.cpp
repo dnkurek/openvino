@@ -4,34 +4,18 @@
 
 #include "unique_kernel_selector.hpp"
 
-#include "unique_kernel_ref.hpp"
-
 namespace kernel_selector {
 
-unique_count_kernel_selector::unique_count_kernel_selector() {
-    Attach<UniqueCountKernelRef>();
-}
+unique_count_kernel_selector::unique_count_kernel_selector() { }
 
 KernelsData unique_count_kernel_selector::GetBestKernels(const Params& params) const {
     return GetNaiveBestKernel(params, KernelType::UNIQUE_COUNT);
 }
 
-unique_count_kernel_selector& unique_count_kernel_selector::Instance() {
-    static unique_count_kernel_selector instance;
-    return instance;
-}
-
-unique_gather_kernel_selector::unique_gather_kernel_selector() {
-    Attach<UniqueGatherKernelRef>();
-}
+unique_gather_kernel_selector::unique_gather_kernel_selector() { }
 
 KernelsData unique_gather_kernel_selector::GetBestKernels(const Params& params) const {
     return GetNaiveBestKernel(params, KernelType::UNIQUE_GATHER);
-}
-
-unique_gather_kernel_selector& unique_gather_kernel_selector::Instance() {
-    static unique_gather_kernel_selector instance;
-    return instance;
 }
 
 }  // namespace kernel_selector

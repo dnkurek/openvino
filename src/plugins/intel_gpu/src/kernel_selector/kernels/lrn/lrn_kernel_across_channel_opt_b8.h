@@ -11,6 +11,11 @@ namespace kernel_selector {
 class LRNKernelAcrossChannel_b8 : public LRNKernelBase {
 public:
     using Parent = LRNKernelBase;
+    static LRNKernelAcrossChannel_b8& Instance() {
+        static LRNKernelAcrossChannel_b8 instance_;
+        return instance_;
+    }
+
     LRNKernelAcrossChannel_b8() : LRNKernelBase("lrn_gpu_across_channel_yxfb_b8_opt") {}
     virtual ~LRNKernelAcrossChannel_b8() {}
 

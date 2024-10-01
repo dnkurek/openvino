@@ -27,6 +27,11 @@ struct reorg_yolo_params : public base_params {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 class ReorgYoloKernelRef : public KernelBaseOpenCL {
 public:
+    static ReorgYoloKernelRef& Instance() {
+        static ReorgYoloKernelRef instance_;
+        return instance_;
+    }
+
     ReorgYoloKernelRef() : KernelBaseOpenCL("reorg_yolo_gpu_ref") {}
     virtual ~ReorgYoloKernelRef() {}
 

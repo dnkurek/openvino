@@ -10,6 +10,11 @@
 namespace kernel_selector {
 class PoolingKerneGPU_b_fs_yx_fsv4 : public PoolingKernelBase {
 public:
+    static PoolingKerneGPU_b_fs_yx_fsv4& Instance() {
+        static PoolingKerneGPU_b_fs_yx_fsv4 instance_;
+        return instance_;
+    }
+
     PoolingKerneGPU_b_fs_yx_fsv4() : PoolingKernelBase("pooling_gpu_b_fs_yx_fsv4") {}
     virtual ~PoolingKerneGPU_b_fs_yx_fsv4() {}
 

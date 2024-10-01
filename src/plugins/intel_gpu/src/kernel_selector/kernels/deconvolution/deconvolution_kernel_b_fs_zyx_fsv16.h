@@ -12,6 +12,10 @@ namespace kernel_selector {
 class DeconvolutionKernel_b_fs_zyx_fsv16 : public DeconvolutionKernelBase {
 public:
     using Parent = DeconvolutionKernelBase;
+    static DeconvolutionKernel_b_fs_zyx_fsv16& Instance() {
+        static DeconvolutionKernel_b_fs_zyx_fsv16 instance_;
+        return instance_;
+    }
 
     DeconvolutionKernel_b_fs_zyx_fsv16() : DeconvolutionKernelBase("gen9_common_conv_bwd_data") {}
     virtual ~DeconvolutionKernel_b_fs_zyx_fsv16() {}

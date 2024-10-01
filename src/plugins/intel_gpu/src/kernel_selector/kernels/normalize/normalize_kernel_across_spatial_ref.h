@@ -9,6 +9,11 @@
 namespace kernel_selector {
 class NormalizeKernelAcrossSpatialRef : public NormalizeKernelBase {
 public:
+    static NormalizeKernelAcrossSpatialRef& Instance() {
+        static NormalizeKernelAcrossSpatialRef instance_;
+        return instance_;
+    }
+
     NormalizeKernelAcrossSpatialRef() : NormalizeKernelBase("normalize_gpu_across_spatial_ref") {}
     virtual ~NormalizeKernelAcrossSpatialRef() {}
 

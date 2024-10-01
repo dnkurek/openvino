@@ -21,6 +21,12 @@ class RangeKernelRef: public KernelBaseOpenCL {
     bool Validate(const Params &p) const override;
     void GetUpdateDispatchDataFunc(KernelData& kd) const override;
 public:
+
+    static RangeKernelRef& Instance() {
+        static RangeKernelRef instance_;
+        return instance_;
+    }
+
     RangeKernelRef() :
         KernelBaseOpenCL { "range_ref" } {
     }

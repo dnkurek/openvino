@@ -10,6 +10,11 @@
 namespace kernel_selector {
 class PoolingKernelGPU_b_fs_zyx_fsv16_imad: public PoolingKernelBase{
 public:
+    static PoolingKernelGPU_b_fs_zyx_fsv16_imad& Instance() {
+        static PoolingKernelGPU_b_fs_zyx_fsv16_imad instance_;
+        return instance_;
+    }
+
     PoolingKernelGPU_b_fs_zyx_fsv16_imad() : PoolingKernelBase("pooling_gpu_b_fs_zyx_fsv16_imad") {}
     virtual ~PoolingKernelGPU_b_fs_zyx_fsv16_imad() {}
 

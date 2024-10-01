@@ -32,6 +32,11 @@ struct region_yolo_params : public base_params {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 class RegionYoloKernelRef : public KernelBaseOpenCL {
 public:
+    static RegionYoloKernelRef& Instance() {
+        static RegionYoloKernelRef instance_;
+        return instance_;
+    }
+
     RegionYoloKernelRef() : KernelBaseOpenCL("region_yolo_gpu_ref") {}
     virtual ~RegionYoloKernelRef() {}
 

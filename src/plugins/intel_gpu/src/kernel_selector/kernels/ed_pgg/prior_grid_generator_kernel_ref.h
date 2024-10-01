@@ -27,6 +27,11 @@ struct experimental_detectron_prior_grid_generator_params : public base_params {
  */
 class ExperimentalDetectronPriorGridGeneratorKernelRef : public KernelBaseOpenCL {
 public:
+    static ExperimentalDetectronPriorGridGeneratorKernelRef& Instance() {
+        static ExperimentalDetectronPriorGridGeneratorKernelRef instance_;
+        return instance_;
+    }
+
     ExperimentalDetectronPriorGridGeneratorKernelRef()
         : KernelBaseOpenCL{"experimental_detectron_prior_grid_generator_ref"} {}
 

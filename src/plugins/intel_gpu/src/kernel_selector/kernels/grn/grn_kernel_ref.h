@@ -12,6 +12,11 @@ namespace kernel_selector {
 class GRNKernelRef : public GRNKernelBase {
 public:
     using Parent = GRNKernelBase;
+    static GRNKernelRef& Instance() {
+        static GRNKernelRef instance_;
+        return instance_;
+    }
+
     GRNKernelRef() : GRNKernelBase("grn_ref") {}
     virtual ~GRNKernelRef() {}
 

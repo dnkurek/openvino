@@ -22,6 +22,11 @@ struct ctc_loss_params : base_params {
  */
 class CTCLossKernelRef : public KernelBaseOpenCL {
 public:
+    static CTCLossKernelRef& Instance() {
+        static CTCLossKernelRef instance_;
+        return instance_;
+    }
+
     CTCLossKernelRef() : KernelBaseOpenCL{"ctc_loss_ref"} {}
 
 private:

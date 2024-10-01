@@ -16,6 +16,11 @@ struct beam_table_update_params : base_params {
 
 class BeamTableUpdateKernelRef : public KernelBaseOpenCL {
 public:
+    static BeamTableUpdateKernelRef& Instance() {
+        static BeamTableUpdateKernelRef instance_;
+        return instance_;
+    }
+
     BeamTableUpdateKernelRef() : KernelBaseOpenCL{"beam_table_update_ref"} {}
     KernelsData GetKernelsData(const Params& params) const override;
     ParamsKey GetSupportedKey() const override;

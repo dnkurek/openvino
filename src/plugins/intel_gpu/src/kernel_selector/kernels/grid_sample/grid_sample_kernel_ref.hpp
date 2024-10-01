@@ -31,6 +31,11 @@ struct grid_sample_params : public base_params {
  */
 class GridSampleKernelRef : public KernelBaseOpenCL {
 public:
+    static GridSampleKernelRef& Instance() {
+        static GridSampleKernelRef instance_;
+        return instance_;
+    }
+
     GridSampleKernelRef() : KernelBaseOpenCL{"grid_sample_ref"} {}
 
     KernelsData GetKernelsData(const Params& params) const override;

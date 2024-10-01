@@ -17,6 +17,11 @@ struct gather_nonzero_params : public base_params {
 
 class GatherNonzeroKernelRef : public KernelBaseOpenCL {
 public:
+    static GatherNonzeroKernelRef& Instance() {
+        static GatherNonzeroKernelRef instance_;
+        return instance_;
+    }
+
     GatherNonzeroKernelRef() : KernelBaseOpenCL("gather_nonzero_ref") {}
     virtual ~GatherNonzeroKernelRef() {}
 

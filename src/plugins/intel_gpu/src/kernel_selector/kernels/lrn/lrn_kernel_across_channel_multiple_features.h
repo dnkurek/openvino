@@ -11,6 +11,11 @@ namespace kernel_selector {
 class LRNKernelAcrossChannelMultipleFeatures : public LRNKernelBase {
 public:
     using Parent = LRNKernelBase;
+    static LRNKernelAcrossChannelMultipleFeatures& Instance() {
+        static LRNKernelAcrossChannelMultipleFeatures instance_;
+        return instance_;
+    }
+
     LRNKernelAcrossChannelMultipleFeatures(const std::string& s = "lrn_gpu_across_channel_multiple_features") : Parent(s) {}
 
     KernelsData GetKernelsData(const Params& params) const override;

@@ -19,6 +19,11 @@ struct pa_sdpa_params : base_params {
 
 class PagedAttentionSDPAKernelOpt : public KernelBaseOpenCL {
 public:
+    static PagedAttentionSDPAKernelOpt& Instance() {
+        static PagedAttentionSDPAKernelOpt instance_;
+        return instance_;
+    }
+
     PagedAttentionSDPAKernelOpt() : KernelBaseOpenCL{"pa_sdpa_opt"} {}
     KernelsData GetKernelsData(const Params& params) const override;
     ParamsKey GetSupportedKey() const override;
