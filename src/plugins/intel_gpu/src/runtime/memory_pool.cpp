@@ -31,7 +31,7 @@ memory_record::memory_record(memory_set users,
     : _users(users), _memory(memory), _network_id(net_id), _type(type) {}
 
 memory::ptr memory_pool::alloc_memory(const layout& layout, allocation_type type, bool reset) {
-    return _engine->allocate_memory(layout, type, reset);
+    return _engine->get_gpumalloc().malloc(layout)->_ptr;
 }
 
 memory_pool::~memory_pool() {}

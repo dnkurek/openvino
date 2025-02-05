@@ -213,8 +213,8 @@ memory::ptr ocl_engine::create_subbuffer(const memory& memory, const layout& new
         if (new_layout.format.is_image_2d()) {
             OPENVINO_NOT_IMPLEMENTED;
         } else if (memory_capabilities::is_usm_type(memory.get_allocation_type())) {
-            auto& new_buf = reinterpret_cast<const ocl::gpu_usm&>(memory);
-            auto ptr = new_buf.get_buffer().get();
+            auto& new_buf = reinterpret_cast<const ocl::gpu_usm&>(memory).get_buffer();
+            auto ptr = new_buf.get();
             auto sub_buffer = cl::UsmMemory(get_usm_helper(), ptr, byte_offset);
 
             return std::make_shared<ocl::gpu_usm>(this,

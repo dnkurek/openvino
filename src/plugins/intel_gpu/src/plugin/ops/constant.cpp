@@ -98,8 +98,15 @@ static void create_data(ProgramBuilder& p, const ov::Shape& const_shape, const s
         p.profiling_ids.push_back(initialconstPrimID);
     } else {
         cldnn::memory::ptr mem = nullptr;
+        cldnn::memory::ptr base = nullptr;
         if (constLayout.bytes_count() > 0) {
-            mem = p.get_engine().allocate_memory(constLayout, false);
+	    if(constLayout.bytes_count() == 0) {
+	        auto tmp = p.get_engine().get_gpumalloc().malloc(constLayout);
+	    //mem = p.get_engine().allocate_memory(constLayout, false);
+                mem = tmp->_ptr;
+	    }
+	    else
+	        mem = p.get_engine().allocate_memory(constLayout, false);
         } else {
             // In the case of empty const data with {0} shape, it has zero byte.
             // To avoid zero byte memory allocation issue, reinterpret one dimension memory to zero dimension memory.

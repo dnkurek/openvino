@@ -54,11 +54,11 @@ event::ptr input_layout_inst::set_data(memory::ptr mem, bool need_to_check_memor
     } else {
         if (_outputs.empty() || !_outputs[0]) {
             _outputs.resize(1);
-            _outputs[0] = engine.allocate_memory(mem->get_layout(), engine.get_preferred_memory_allocation_type(), false);
+            _outputs[0] = engine.get_gpumalloc().malloc(mem->get_layout())->_ptr;
         }
 
         if (ol.is_dynamic() && _outputs[0]->size() < mem->size()) {
-            _outputs[0] = engine.allocate_memory(mem->get_layout(), engine.get_preferred_memory_allocation_type(), false);
+            _outputs[0] = engine.get_gpumalloc().malloc(mem->get_layout())->_ptr;
         }
         mem_lock<uint8_t> src(mem, stream);
         ev = _outputs[0]->copy_from(stream, src.data(), false);

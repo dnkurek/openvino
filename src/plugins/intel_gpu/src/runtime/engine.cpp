@@ -60,7 +60,8 @@ static size_t get_cpu_ram_size() {
 namespace cldnn {
 
 engine::engine(const device::ptr device)
-    : _device(device) {}
+    : _device(device)
+    , _gpuMalloc(*this, 1024 * 64, 512) {}
 
 const device_info& engine::get_device_info() const {
     return _device->get_info();

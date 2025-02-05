@@ -12,6 +12,7 @@
 #include "layout.hpp"
 #include "execution_config.hpp"
 #include "engine_configuration.hpp"
+#include "gpumalloc.hpp"
 
 #include <memory>
 #include <set>
@@ -171,10 +172,13 @@ public:
     /// @note engine is created for the first device returned by devices query
     static std::shared_ptr<cldnn::engine> create(engine_types engine_type, runtime_types runtime_type);
 
+    cldnn::gpuMalloc& get_gpumalloc() { return _gpuMalloc; }
+
 protected:
     /// Create engine for given @p device and @p configuration
     engine(const device::ptr device);
     const device::ptr _device;
+    cldnn::gpuMalloc _gpuMalloc;
 
     std::array<std::atomic<uint64_t>, static_cast<size_t>(allocation_type::max_value)> _memory_usage_data{};
     std::array<std::atomic<uint64_t>, static_cast<size_t>(allocation_type::max_value)> _peak_memory_usage_data{};
