@@ -350,20 +350,13 @@ dnnl::memory::desc layout_to_memory_desc(cldnn::layout l, dnnl::memory::format_t
         // However, if the memory::desc to be converted is related to another blocked format, it should be expanded to a 4d tensor.
         auto shape_rank = l.is_dynamic() ?
             static_cast<size_t>(l.get_partial_shape().rank().get_length()) : l.get_shape().size();
-        // We may also have rank 3 shapes (e.g. 1D conv / convTranspose weights)
-        // but those must go through convert_tensor() to preserve the correct I/O
-        // ordering and not be treated as 3D activations
-        if (shape_rank == 3 && !need_blocked && !is_grouped &&
-            (l.get_format() == format::bfyx || l.get_format() == format::byxf)) {
+        if (shape_rank == 3 && !need_blocked && !is_grouped) {
             dims.push_back(l.batch());
             dims.push_back(l.feature());
             // In cldnn::layer, when it is a 3D shape, the values ​​of the XY axes can sometimes be flipped,
             // so the larger value of the two is used.
             dims.push_back(std::max(l.spatial(0), l.spatial(1)));
-            if (l.get_format() == format::bfyx)
-                target_fmt = dnnl::memory::format_tag::abc;
-            else
-                target_fmt = dnnl::memory::format_tag::acb;
+            target_fmt = dnnl::memory::format_tag::abc;
         } else {
             auto rank = cldnn::format::dimension(l.format);
             dims = convert_tensor(l.get_tensor(), rank, cldnn::format::is_grouped(l.format));
